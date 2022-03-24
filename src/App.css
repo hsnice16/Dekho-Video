@@ -1,0 +1,28 @@
+/* mockman-style */
+@import url("https://unpkg.com/mockman-js@latest/dist/style.css");
+
+/* poshui-components */
+@import url("https://cdn.jsdelivr.net/gh/hsnice16/PoshUI-Components@development/css/main.min.css");
+
+:root {
+  --COLOR-MAIN-BACKGROUND: #44475a;
+  --COLOR-NAVBAR-ACTIVE: #343746;
+  --COLOR-NAVBAR-BACKGROUND: #2c2e3b;
+  --COLOR-PRIMARY: #3ddc97;
+  --COLOR-TEXT: #ffffff;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--COLOR-TEXT);
+  font-size: 1.6rem;
+}
+
+/* Link */
+a {
+  color: var(--COLOR-TEXT);
+}
