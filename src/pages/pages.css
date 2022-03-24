@@ -1,0 +1,5 @@
+main {
+  background: var(--COLOR-MAIN-BACKGROUND);
+  margin-left: 24rem;
+  min-height: 100vh;
+}
