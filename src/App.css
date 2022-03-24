@@ -10,6 +10,10 @@
   --COLOR-NAVBAR-BACKGROUND: #2c2e3b;
   --COLOR-PRIMARY: #3ddc97;
   --COLOR-TEXT: #ffffff;
+  --COLOR-TEXT-DARK-SHADE: #d3d3d3;
+
+  --NAVBAR-Z-INDEX: 2;
+  --VIDEO-CARD-DOTS-ICON-Z-INDEX: 1;
 }
 
 html {
