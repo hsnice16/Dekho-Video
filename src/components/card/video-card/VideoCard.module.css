@@ -2,7 +2,7 @@
   border-radius: 50%;
   height: 3rem;
   transition: background 0.3s;
-  width: 4rem;
+  min-width: 3rem;
 }
 
 .DotsIconSpan:hover {
@@ -38,6 +38,13 @@
 .VideoCard {
   background: var(--COLOR-MAIN-BACKGROUND);
   margin: 0 1rem 3rem;
+}
+
+.VideoCard h6 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .VideoCard p {

@@ -3,20 +3,16 @@ import { FaPlay } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
 import { v4 as uuid } from "uuid";
 import styles from "./VideoCard.module.css";
-import {
-  AddToPlaylistIcon,
-  EternalsPoster,
-  MarvelLogo,
-  DeleteIcon,
-  WatchLaterIcon,
-} from "assets";
+import { AddToPlaylistIcon, DeleteIcon, WatchLaterIcon } from "assets";
 
-export const VideoCard = () => {
+export const VideoCard = ({ video }) => {
   const [showOptionsList, setShowOptionsList] = useState(false);
 
   const handleShowOptionsListToggle = () => {
     setShowOptionsList((prevStateValue) => !prevStateValue);
   };
+
+  const { creator, creatorLogo, thumbnail, title } = video;
 
   const optionsList = [
     {
@@ -42,8 +38,8 @@ export const VideoCard = () => {
         <img
           loading="lazy"
           className="card-vertical-img"
-          src={EternalsPoster}
-          alt="eternals trailer poster"
+          src={thumbnail.url}
+          alt={thumbnail.altText}
         />
 
         <span
@@ -53,19 +49,17 @@ export const VideoCard = () => {
         </span>
       </div>
 
-      <div className="card-text-overlay-row px-0">
+      <div className="card-text-overlay-row justify-c-sb px-0">
         <img
           loading="lazy"
           className="card-horizontal-img shadow-unset"
-          src={MarvelLogo}
-          alt="marvel logo"
+          src={creatorLogo.url}
+          alt={creatorLogo.altText}
         />
 
         <div>
-          <h6 className="card-head fs-1p5 mt-0p5">
-            Marvel Studios' Eternals | Final Trailer
-          </h6>
-          <p className="card-text fs-1p5">Marvel Entertainment</p>
+          <h6 className="card-head fs-1p5 lh-1p5 mt-0p5">{title}</h6>
+          <p className="card-text fs-1p5">{creator}</p>
         </div>
 
         <span
