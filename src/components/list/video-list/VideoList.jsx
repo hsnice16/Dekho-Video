@@ -4,7 +4,7 @@ import { getEmptyArrayOfObjects } from "utils";
 
 export const VideoList = () => {
   return (
-    <ul className={`${styles.VideoList}`}>
+    <ul className={`p-4 ${styles.VideoList}`}>
       {getEmptyArrayOfObjects(10).map(({ _id }) => (
         <li key={_id}>
           <VideoCard />

@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <main>
       <ul
-        className={`align-i-ctr flex py-1p5 px-4 ${styles.CategoryChipContainer}`}
+        className={`align-i-ctr flex py-1p5 px-5 ${styles.CategoryChipContainer}`}
       >
         {["All", "Trailers", "Clips", "Movies", "Talks"].map((category) => (
           <li>
