@@ -1,5 +1,9 @@
 .CategoryChipContainer {
+  background: var(--COLOR-MAIN-BACKGROUND);
   border-bottom: thin solid var(--COLOR-NAVBAR-ACTIVE);
   overflow-x: auto;
+  position: sticky;
+  top: 8.1rem;
   white-space: nowrap;
+  z-index: var(--NAVBAR-Z-INDEX);
 }
