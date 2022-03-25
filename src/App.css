@@ -26,6 +26,23 @@ body {
   font-size: 1.6rem;
 }
 
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--COLOR-MAIN-BACKGROUND);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--COLOR-TEXT-DARK-SHADE);
+  border: thick solid var(--COLOR-MAIN-BACKGROUND);
+  border-radius: 5rem;
+}
+
 /* Link */
 a {
   color: var(--COLOR-TEXT);

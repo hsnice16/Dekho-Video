@@ -37,6 +37,7 @@
 
 .VideoCard {
   background: var(--COLOR-MAIN-BACKGROUND);
+  margin: 0 1rem 3rem;
 }
 
 .VideoCard p {

@@ -1,0 +1,5 @@
+.CategoryChipContainer {
+  border-bottom: thin solid var(--COLOR-NAVBAR-ACTIVE);
+  overflow-x: auto;
+  white-space: nowrap;
+}
