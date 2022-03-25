@@ -1,0 +1,45 @@
+.DotsIconSpan {
+  border-radius: 50%;
+  height: 3rem;
+  transition: background 0.3s;
+  width: 4rem;
+}
+
+.DotsIconSpan:hover {
+  background: var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.DotsIconSpan ul {
+  background: var(--COLOR-NAVBAR-BACKGROUND);
+  top: 0;
+  transform: translate(-90%, 28%);
+  width: 24ch;
+  z-index: var(--VIDEO-CARD-DOTS-ICON-Z-INDEX);
+}
+
+.DotsIconSpan ul li {
+  transition: background 0.3s;
+}
+
+.DotsIconSpan ul li:hover {
+  background: var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.ListIcon {
+  height: 2rem;
+  margin-right: 0.5rem;
+  width: 2rem;
+}
+
+.OverlayContent {
+  top: 0;
+}
+
+.VideoCard {
+  background: var(--COLOR-MAIN-BACKGROUND);
+  margin: 0 1rem 3rem;
+}
+
+.VideoCard p {
+  color: var(--COLOR-TEXT-DARK-SHADE);
+}
