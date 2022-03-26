@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { OptionsListProvider } from "context";
 
 import { makeServer } from "./server";
 
@@ -12,7 +13,9 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <OptionsListProvider>
+        <App />
+      </OptionsListProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,49 +1,42 @@
-import React, { useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
-import { v4 as uuid } from "uuid";
 import styles from "./VideoCard.module.css";
-import {
-  AddToPlaylistIcon,
-  EternalsPoster,
-  MarvelLogo,
-  DeleteIcon,
-  WatchLaterIcon,
-} from "assets";
+import PropTypes from "prop-types";
+import { useOptionsList } from "context";
 
-export const VideoCard = () => {
-  const [showOptionsList, setShowOptionsList] = useState(false);
+export const VideoCard = ({ video, loading }) => {
+  const { showOptionsListForVideo, toggleShowOptionsList, getOptionsList } =
+    useOptionsList();
+  const {
+    creator,
+    creatorLogo,
+    thumbnail,
+    title,
+    isInWatchLater,
+    isLiked,
+    videoYTId,
+  } = video;
+  const optionsList = getOptionsList(isInWatchLater, isLiked);
 
-  const handleShowOptionsListToggle = () => {
-    setShowOptionsList((prevStateValue) => !prevStateValue);
-  };
+  return loading ? (
+    <div
+      className={`card card-vertical shadow-unset ${styles.LoadingCard} ${styles.VideoCard}`}
+    >
+      <span className="card-vertical-img w-100pct"></span>
 
-  const optionsList = [
-    {
-      _id: uuid(),
-      option: "Add to Watch Later",
-      GetIcon: (props) => <WatchLaterIcon {...props} />,
-    },
-    {
-      _id: uuid(),
-      option: "Add to Playlist",
-      GetIcon: (props) => <AddToPlaylistIcon {...props} />,
-    },
-    {
-      _id: uuid(),
-      option: "Delete from Watch Later",
-      GetIcon: (props) => <DeleteIcon {...props} />,
-    },
-  ];
-
-  return (
+      <div className="card-text-overlay-row px-0">
+        <span className="card-horizontal-img shadow-unset"></span>
+        <span className="card-head h-3p5 mt-0p5 w-6p5"></span>
+      </div>
+    </div>
+  ) : (
     <div className={`card card-vertical shadow-unset ${styles.VideoCard}`}>
       <div className="card-text-overlay">
         <img
           loading="lazy"
           className="card-vertical-img"
-          src={EternalsPoster}
-          alt="eternals trailer poster"
+          src={thumbnail.url}
+          alt={thumbnail.altText}
         />
 
         <span
@@ -53,28 +46,32 @@ export const VideoCard = () => {
         </span>
       </div>
 
-      <div className="card-text-overlay-row px-0">
+      <div className="card-text-overlay-row justify-c-sb px-0">
         <img
           loading="lazy"
           className="card-horizontal-img shadow-unset"
-          src={MarvelLogo}
-          alt="marvel logo"
+          src={creatorLogo.url}
+          alt={creatorLogo.altText}
         />
 
         <div>
-          <h6 className="card-head fs-1p5 mt-0p5">
-            Marvel Studios' Eternals | Final Trailer
-          </h6>
-          <p className="card-text fs-1p5">Marvel Entertainment</p>
+          <h6 className="card-head fs-1p5 lh-1p5 mt-0p5">{title}</h6>
+          <p className="card-text fs-1p5">{creator}</p>
         </div>
 
         <span
-          className={`cursor-ptr flex mt-0p5 relative ${styles.DotsIconSpan}`}
-          onClick={handleShowOptionsListToggle}
+          className={`cursor-ptr flex mt-0p5 relative ${styles.DotsIconSpan} ${
+            showOptionsListForVideo === videoYTId
+              ? styles.OptionsListIsVisible
+              : ""
+          }`}
+          onClick={(event) => {
+            toggleShowOptionsList(event, videoYTId);
+          }}
         >
           <HiDotsVertical className="fs-2 m-auto" />
 
-          {showOptionsList && (
+          {showOptionsListForVideo === videoYTId && (
             <ul className="absolute border-r-0p2 fs-1p5 p-0p5">
               {optionsList.map(({ _id, option, GetIcon }) => (
                 <li
@@ -90,4 +87,46 @@ export const VideoCard = () => {
       </div>
     </div>
   );
+};
+
+VideoCard.propTypes = {
+  video: PropTypes.shape({
+    _id: PropTypes.string,
+    categoryName: PropTypes.string,
+    creator: PropTypes.string,
+    creatorLogo: PropTypes.shape({
+      altText: PropTypes.string,
+      url: PropTypes.string,
+    }),
+    isInWatchLater: PropTypes.bool,
+    isLiked: PropTypes.bool,
+    thumbnail: PropTypes.shape({
+      altText: PropTypes.string,
+      url: PropTypes.string,
+    }),
+    title: PropTypes.string,
+    videoYTId: PropTypes.string,
+  }),
+  loading: PropTypes.bool,
+};
+
+VideoCard.defaultProps = {
+  video: {
+    _id: "",
+    categoryName: "",
+    creator: "",
+    creatorLogo: {
+      altText: "",
+      url: "",
+    },
+    isInWatchLater: false,
+    isLiked: false,
+    thumbnail: {
+      altText: "",
+      url: "",
+    },
+    title: "",
+    videoYTId: "",
+  },
+  loading: false,
 };
