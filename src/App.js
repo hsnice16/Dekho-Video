@@ -10,6 +10,7 @@ import {
   ROUTE_WATCH_LATER,
   ROUTE_HISTORY,
 } from "utils";
+import { VideosProvider } from "context";
 
 // mockman-js
 import Mockman from "mockman-js";
@@ -21,7 +22,14 @@ function App() {
       <SideNavbar />
 
       <Routes>
-        <Route path={ROUTE_ROOT} element={<Home />} />
+        <Route
+          path={ROUTE_ROOT}
+          element={
+            <VideosProvider>
+              <Home />
+            </VideosProvider>
+          }
+        />
         <Route path={ROUTE_PLAYLISTS} element={<Playlists />} />
         <Route path={ROUTE_LIKED} element={<Liked />} />
         <Route path={ROUTE_WATCH_LATER} element={<WatchLater />} />

@@ -5,14 +5,11 @@
   min-width: 3rem;
 }
 
-.DotsIconSpan:hover {
-  background: var(--COLOR-NAVBAR-ACTIVE);
-}
-
 .DotsIconSpan ul {
   background: var(--COLOR-NAVBAR-BACKGROUND);
+  right: 0;
   top: 0;
-  transform: translate(-90%, 28%);
+  transform: translate(-15%, 2rem);
   width: 24ch;
   z-index: var(--VIDEO-CARD-DOTS-ICON-Z-INDEX);
 }
@@ -21,14 +18,14 @@
   transition: background 0.3s;
 }
 
-.DotsIconSpan ul li:hover {
-  background: var(--COLOR-NAVBAR-ACTIVE);
-}
-
 .ListIcon {
   height: 2rem;
   margin-right: 0.5rem;
   width: 2rem;
+}
+
+.LoadingCard {
+  width: 30rem;
 }
 
 .OverlayContent {
@@ -49,4 +46,11 @@
 
 .VideoCard p {
   color: var(--COLOR-TEXT-DARK-SHADE);
+}
+
+.DotsIconSpan:hover,
+.DotsIconSpan ul li:hover,
+.LoadingCard span,
+.OptionsListIsVisible {
+  background: var(--COLOR-NAVBAR-ACTIVE);
 }

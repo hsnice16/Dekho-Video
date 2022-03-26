@@ -40,7 +40,7 @@ const useAsync = (apiToCall) => {
         });
       }
     })();
-  }, []);
+  }, [api, propertyToGet]);
 
   return { state, dispatch };
 };
