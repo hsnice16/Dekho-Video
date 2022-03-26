@@ -1,0 +1,28 @@
+.FormBtnLoading {
+  align-items: center;
+  cursor: not-allowed;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.FormBtnLoading:hover {
+  background: var(--COLOR-PRIMARY);
+}
+
+.FormBtnLoading > img {
+  max-width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.FormButton {
+  background: var(--COLOR-PRIMARY);
+  color: var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.FormButton:not(.FormBtnLoading):hover {
+  background: var(--COLOR-PRIMARY-DARK-SHADE);
+}
+
+.FormButton svg {
+  margin-bottom: -0.2rem;
+}

@@ -1,0 +1,7 @@
+.FormErrorLink {
+  color: var(--COLOR-MAIN-BACKGROUND);
+}
+
+.FormErrorLink:hover {
+  color: var(--COLOR-NAVBAR-BACKGROUND);
+}

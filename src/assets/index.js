@@ -11,3 +11,5 @@ export { OutlinedLikedIcon } from "./icons/OutlinedLikedIcon";
 export { OutlinedWatchLaterIcon } from "./icons/OutlinedWatchLaterIcon";
 export { PlaylistsIcon } from "./icons/PlaylistsIcon";
 export { WatchLaterIcon } from "./icons/WatchLaterIcon";
+
+export { default as spinner5 } from "./loader/spinner-5.gif";
