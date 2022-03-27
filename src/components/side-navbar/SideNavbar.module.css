@@ -1,29 +1,42 @@
-.Icon {
+.icon {
   height: 2.5rem;
   margin: auto 1rem;
   width: 2.5rem;
 }
 
-.SideNavbar {
+.sideNavbar {
   background: var(--COLOR-NAVBAR-BACKGROUND);
   box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.25);
   height: 100vh;
   position: fixed;
+  transition: width 0.3s;
   width: 24rem;
 }
 
-.SideNavbar a {
+.sideNavbar a {
   align-items: flex-end;
   display: flex;
   padding: 1.5rem 1rem;
   transition: background 0.3s;
 }
 
-.SideNavbar a:hover,
-.Active {
+.sideNavbar a:hover,
+.active {
   background: var(--COLOR-NAVBAR-ACTIVE);
 }
 
-.SideNavbar span {
+.sideNavbar span {
   margin: auto 0.5rem;
+}
+
+.sideNavbar_shrinked {
+  width: 8rem;
+}
+
+.sideNavbar_shrinked a {
+  justify-content: center;
+}
+
+.sideNavbar_shrinked span {
+  display: none;
 }

@@ -13,7 +13,7 @@ const FormError = ({ error, linkTo, onPage }) => {
         (error === "Email Already Exist" ? (
           <>
             Email Id is already registered. Please{" "}
-            <Link to={linkTo} className={styles.FormErrorLink}>
+            <Link to={linkTo} className={styles.formError_link}>
               Log In
             </Link>
           </>
@@ -25,7 +25,7 @@ const FormError = ({ error, linkTo, onPage }) => {
         (error === "Not Registered Email" ? (
           <>
             Email Id is not registered. Please{" "}
-            <Link to={linkTo} className={styles.FormErrorLink}>
+            <Link to={linkTo} className={styles.formError_link}>
               Sign Up
             </Link>{" "}
             first

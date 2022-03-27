@@ -1,8 +1,8 @@
 import { v4 as uuid } from "uuid";
 import styles from "./Home.module.css";
 import { Chip, VideoList } from "components";
-import { useCategory, useDocumentTitle, useScrollToTop } from "custom-hooks";
-import { useVideos } from "context";
+import { useDocumentTitle, useScrollToTop } from "custom-hooks";
+import { useCategory, useVideos } from "context";
 import { getEmptyArrayOfObjects } from "utils";
 
 export const Home = () => {
@@ -24,9 +24,9 @@ export const Home = () => {
   useScrollToTop(selectedCategory);
 
   return (
-    <main>
+    <>
       <ul
-        className={`align-i-ctr flex py-1p5 px-5 ${styles.CategoryChipContainer}`}
+        className={`align-i-ctr flex py-1p5 px-5 ${styles.categoryChip_container}`}
       >
         {categoryStatus === "loading" &&
           getEmptyArrayOfObjects(3).map(({ _id }) => (
@@ -52,6 +52,6 @@ export const Home = () => {
       </ul>
 
       <VideoList videos={filteredVideos} status={videosStatus} />
-    </main>
+    </>
   );
 };

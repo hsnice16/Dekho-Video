@@ -1,11 +1,11 @@
-.DotsIconSpan {
+.dotsIcon_span {
   border-radius: 50%;
   height: 3rem;
   transition: background 0.3s;
   min-width: 3rem;
 }
 
-.DotsIconSpan ul {
+.dotsIcon_span ul {
   background: var(--COLOR-NAVBAR-BACKGROUND);
   right: 0;
   top: 0;
@@ -14,43 +14,43 @@
   z-index: var(--VIDEO-CARD-DOTS-ICON-Z-INDEX);
 }
 
-.DotsIconSpan ul li {
+.dotsIcon_span ul li {
   transition: background 0.3s;
 }
 
-.ListIcon {
+.listIcon {
   height: 2rem;
   margin-right: 0.5rem;
   width: 2rem;
 }
 
-.LoadingCard {
+.videoCard_loading {
   width: 30rem;
 }
 
-.OverlayContent {
+.overlayContent {
   top: 0;
 }
 
-.VideoCard {
+.videoCard {
   background: var(--COLOR-MAIN-BACKGROUND);
   margin: 0 1rem 3rem;
 }
 
-.VideoCard h6 {
+.videoCard h6 {
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
-.VideoCard p {
+.videoCard p {
   color: var(--COLOR-TEXT-DARK-SHADE);
 }
 
-.DotsIconSpan:hover,
-.DotsIconSpan ul li:hover,
-.LoadingCard span,
-.OptionsListIsVisible {
+.dotsIcon_span:hover,
+.dotsIcon_span ul li:hover,
+.videoCard_loading span,
+.optionsList_isVisible {
   background: var(--COLOR-NAVBAR-ACTIVE);
 }

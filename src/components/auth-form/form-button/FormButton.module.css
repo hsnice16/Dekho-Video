@@ -1,28 +1,28 @@
-.FormBtnLoading {
+.btnForm_loading {
   align-items: center;
   cursor: not-allowed;
   display: inline-flex;
   justify-content: center;
 }
 
-.FormBtnLoading:hover {
+.btnForm_loading:hover {
   background: var(--COLOR-PRIMARY);
 }
 
-.FormBtnLoading > img {
+.btnForm_loading > img {
   max-width: 1.5rem;
   margin-right: 0.5rem;
 }
 
-.FormButton {
+.btnForm {
   background: var(--COLOR-PRIMARY);
   color: var(--COLOR-NAVBAR-ACTIVE);
 }
 
-.FormButton:not(.FormBtnLoading):hover {
+.btnForm:not(.btnForm_loading):hover {
   background: var(--COLOR-PRIMARY-DARK-SHADE);
 }
 
-.FormButton svg {
+.btnForm svg {
   margin-bottom: -0.2rem;
 }

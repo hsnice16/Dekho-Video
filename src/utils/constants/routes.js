@@ -5,3 +5,4 @@ export const ROUTE_WATCH_LATER = "/watch-later";
 export const ROUTE_HISTORY = "/history";
 export const ROUTE_SIGN_IN = "/sign-in/user";
 export const ROUTE_SIGN_UP = "/sign-up/user";
+export const ROUTE_WATCH_VIDEO = "/watch/v";
