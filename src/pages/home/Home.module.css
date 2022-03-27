@@ -5,5 +5,5 @@
   position: sticky;
   top: 8.1rem;
   white-space: nowrap;
-  z-index: var(--NAVBAR-Z-INDEX);
+  z-index: var(--CATEGORY-CHIP-CONTAINER-Z-INDEX);
 }

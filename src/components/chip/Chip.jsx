@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 export const Chip = ({ textToShow, activeChip, handleChipClick, loading }) => {
   return loading ? (
-    <span className={`inline-block mx-1 px-1 py-0p5 ${styles.Chip}`}></span>
+    <span
+      className={`h-3p5 inline-block mx-1 px-1 py-0p5 ${styles.Chip}`}
+    ></span>
   ) : (
     <span
       className={`cursor-ptr fw-bold inline-block mx-1 px-1 py-0p5 text-center ${

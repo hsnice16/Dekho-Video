@@ -9,10 +9,12 @@
   --COLOR-NAVBAR-ACTIVE: #343746;
   --COLOR-NAVBAR-BACKGROUND: #2c2e3b;
   --COLOR-PRIMARY: #3ddc97;
+  --COLOR-PRIMARY-DARK-SHADE: #34c184;
   --COLOR-TEXT: #ffffff;
   --COLOR-TEXT-DARK-SHADE: #d3d3d3;
 
-  --NAVBAR-Z-INDEX: 2;
+  --NAVBAR-Z-INDEX: 3;
+  --CATEGORY-CHIP-CONTAINER-Z-INDEX: 2;
   --VIDEO-CARD-DOTS-ICON-Z-INDEX: 1;
 }
 
@@ -41,6 +43,14 @@ body {
   background: var(--COLOR-TEXT-DARK-SHADE);
   border: thick solid var(--COLOR-MAIN-BACKGROUND);
   border-radius: 5rem;
+}
+
+/* 
+    to hide "reveal" button at the edge of a password <input> which 
+    displays the value of the password field in plain text 
+*/
+::-ms-reveal {
+  display: none !important;
 }
 
 /* Link */

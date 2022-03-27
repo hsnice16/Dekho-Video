@@ -1,0 +1,10 @@
+.FormContainer,
+.FormContainer input {
+  background: var(--COLOR-MAIN-BACKGROUND);
+  border: medium solid var(--COLOR-NAVBAR-BACKGROUND);
+  color: var(--COLOR-TEXT);
+}
+
+.FormContainer a:hover {
+  color: var(--COLOR-TEXT-DARK-SHADE);
+}

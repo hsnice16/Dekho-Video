@@ -1,25 +1,45 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-
-import { Navbar, SideNavbar } from "components";
-import { Home, Playlists, Liked, WatchLater, History } from "pages";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Navbar, SideNavbar, RestrictRoute } from "components";
+import {
+  Home,
+  Playlists,
+  Liked,
+  WatchLater,
+  History,
+  SignIn,
+  SignUp,
+} from "pages";
 import {
   ROUTE_ROOT,
   ROUTE_PLAYLISTS,
   ROUTE_LIKED,
   ROUTE_WATCH_LATER,
   ROUTE_HISTORY,
+  ROUTE_SIGN_IN,
+  ROUTE_SIGN_UP,
 } from "utils";
-import { VideosProvider } from "context";
+import { VideosProvider, useUser } from "context";
 
 // mockman-js
 import Mockman from "mockman-js";
 
 function App() {
+  const location = useLocation();
+  const { userState } = useUser();
+  const RestrictRouteList = [ROUTE_SIGN_IN, ROUTE_SIGN_UP];
+
   return (
     <>
-      <Navbar />
-      <SideNavbar />
+      {userState.isUserAuthTokenExist &&
+      RestrictRouteList.includes(location.pathname) ? (
+        <></>
+      ) : (
+        <>
+          <Navbar />
+          <SideNavbar />
+        </>
+      )}
 
       <Routes>
         <Route
@@ -30,6 +50,12 @@ function App() {
             </VideosProvider>
           }
         />
+
+        <Route element={<RestrictRoute />}>
+          <Route path={ROUTE_SIGN_IN} element={<SignIn />} />
+          <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
+        </Route>
+
         <Route path={ROUTE_PLAYLISTS} element={<Playlists />} />
         <Route path={ROUTE_LIKED} element={<Liked />} />
         <Route path={ROUTE_WATCH_LATER} element={<WatchLater />} />
