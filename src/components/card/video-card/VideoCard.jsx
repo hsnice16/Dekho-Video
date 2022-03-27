@@ -20,7 +20,7 @@ export const VideoCard = ({ video, loading }) => {
 
   return loading ? (
     <div
-      className={`card card-vertical shadow-unset ${styles.LoadingCard} ${styles.VideoCard}`}
+      className={`card card-vertical shadow-unset ${styles.videoCard_loading} ${styles.videoCard}`}
     >
       <span className="card-vertical-img w-100pct"></span>
 
@@ -30,7 +30,7 @@ export const VideoCard = ({ video, loading }) => {
       </div>
     </div>
   ) : (
-    <div className={`card card-vertical shadow-unset ${styles.VideoCard}`}>
+    <div className={`card card-vertical shadow-unset ${styles.videoCard}`}>
       <div className="card-text-overlay">
         <img
           loading="lazy"
@@ -40,7 +40,7 @@ export const VideoCard = ({ video, loading }) => {
         />
 
         <span
-          className={`card-vertical-img overlay-content ${styles.OverlayContent}`}
+          className={`card-vertical-img overlay-content ${styles.overlayContent}`}
         >
           <FaPlay className="overlay-play-icon" /> Play
         </span>
@@ -55,14 +55,14 @@ export const VideoCard = ({ video, loading }) => {
         />
 
         <div>
-          <h6 className="card-head fs-1p5 lh-1p5 mt-0p5">{title}</h6>
+          <h2 className="card-head fs-1p5 lh-1p5 mt-0p5">{title}</h2>
           <p className="card-text fs-1p5">{creator}</p>
         </div>
 
         <span
-          className={`cursor-ptr flex mt-0p5 relative ${styles.DotsIconSpan} ${
+          className={`cursor-ptr flex mt-0p5 relative ${styles.dotsIcon_span} ${
             showOptionsListForVideo === videoYTId
-              ? styles.OptionsListIsVisible
+              ? styles.optionsList_isVisible
               : ""
           }`}
           onClick={(event) => {
@@ -78,7 +78,7 @@ export const VideoCard = ({ video, loading }) => {
                   key={_id}
                   className="align-i-fs border-r-0p2 flex my-0p5 p-0p5"
                 >
-                  <GetIcon className={styles.ListIcon} /> {option}
+                  <GetIcon className={styles.listIcon} /> {option}
                 </li>
               ))}
             </ul>

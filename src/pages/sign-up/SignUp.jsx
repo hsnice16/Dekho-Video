@@ -28,7 +28,7 @@ export const SignUp = () => {
   } = useAuthHandler();
 
   return (
-    <main className="pt-5">
+    <div className="pt-5">
       {status === "error" && (
         <FormError error={error} linkTo={ROUTE_SIGN_IN} onPage="SignUp" />
       )}
@@ -102,6 +102,6 @@ export const SignUp = () => {
           linkText="Already using Dekho Video? Log In"
         />
       </FormContainer>
-    </main>
+    </div>
   );
 };

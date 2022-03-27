@@ -15,7 +15,7 @@ const FormPasswordInput = ({ name, id, value, handleChange }) => {
 
   return (
     <div
-      className={`bg-unset border-r-0p2 flex input mx-0 p-0 w-100pct ${styles.PasswordDiv}`}
+      className={`bg-unset border-r-0p2 flex input mx-0 p-0 w-100pct ${styles.passwordDiv}`}
     >
       <input
         className="bg-unset border-none input m-0 pr-0"

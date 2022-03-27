@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 export const Chip = ({ textToShow, activeChip, handleChipClick, loading }) => {
   return loading ? (
     <span
-      className={`h-3p5 inline-block mx-1 px-1 py-0p5 ${styles.Chip}`}
+      className={`h-3p5 inline-block mx-1 px-1 py-0p5 ${styles.chip}`}
     ></span>
   ) : (
     <span
       className={`cursor-ptr fw-bold inline-block mx-1 px-1 py-0p5 text-center ${
-        styles.Chip
-      } ${activeChip === textToShow ? styles.ActiveChip : ""}`}
+        styles.chip
+      } ${activeChip === textToShow ? styles.chip_active : ""}`}
       onClick={handleChipClick}
     >
       {textToShow}

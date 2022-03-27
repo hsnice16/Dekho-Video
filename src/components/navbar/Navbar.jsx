@@ -16,9 +16,9 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className={`align-i-ctr flex justify-c-sb p-1 ${styles.Navbar}`}>
+    <nav className={`align-i-ctr flex justify-c-sb p-1 ${styles.navbar}`}>
       <div className="flex">
-        <BrandLogo className={styles.Logo} />
+        <BrandLogo className={styles.logo} />
         <Link to={ROUTE_ROOT} className="fs-3">
           DekhoVideo
         </Link>
@@ -31,12 +31,12 @@ export const Navbar = () => {
       >
         {userState.isUserAuthTokenExist ? (
           <>
-            <FilledAvatar className={styles.FilledAvatar} />
+            <FilledAvatar className={styles.avatar_filled} />
             <span>Log Out</span>
           </>
         ) : (
           <>
-            <OutlinedAvatar className={styles.Logo} />
+            <OutlinedAvatar className={styles.logo} />
             <span>Log In</span>
           </>
         )}

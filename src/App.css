@@ -16,11 +16,12 @@
   --NAVBAR-Z-INDEX: 3;
   --CATEGORY-CHIP-CONTAINER-Z-INDEX: 2;
   --VIDEO-CARD-DOTS-ICON-Z-INDEX: 1;
+
+  --MD-BREAKPOINT: "940px";
 }
 
-html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
+a {
+  color: var(--COLOR-TEXT);
 }
 
 body {
@@ -28,15 +29,29 @@ body {
   font-size: 1.6rem;
 }
 
-/* Scroll Bar */
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+main {
+  background: var(--COLOR-MAIN-BACKGROUND);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  transition: margin-left 0.3s;
+}
+
+/* override */
+
+::-ms-reveal {
+  display: none !important;
+}
+
+/* scrollbar */
 
 ::-webkit-scrollbar {
   height: 1.5rem;
   width: 1.5rem;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--COLOR-MAIN-BACKGROUND);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -45,15 +60,16 @@ body {
   border-radius: 5rem;
 }
 
-/* 
-    to hide "reveal" button at the edge of a password <input> which 
-    displays the value of the password field in plain text 
-*/
-::-ms-reveal {
-  display: none !important;
+::-webkit-scrollbar-track {
+  background: var(--COLOR-MAIN-BACKGROUND);
 }
 
-/* Link */
-a {
-  color: var(--COLOR-TEXT);
+/* utility-classes */
+
+.ml-8 {
+  margin-left: 8rem;
+}
+
+.ml-24 {
+  margin-left: 24rem;
 }

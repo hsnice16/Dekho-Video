@@ -1,4 +1,4 @@
-.CategoryChipContainer {
+.categoryChip_container {
   background: var(--COLOR-MAIN-BACKGROUND);
   border-bottom: thin solid var(--COLOR-NAVBAR-ACTIVE);
   overflow-x: auto;

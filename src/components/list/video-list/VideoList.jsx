@@ -5,7 +5,7 @@ import { getEmptyArrayOfObjects } from "utils";
 
 export const VideoList = ({ videos, status }) => {
   return (
-    <ul className={`p-4 ${styles.VideoList}`}>
+    <ul className={`p-4 ${styles.videoList}`}>
       {status === "loading" &&
         getEmptyArrayOfObjects(4).map(({ _id }) => (
           <li key={_id}>

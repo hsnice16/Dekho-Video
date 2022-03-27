@@ -1,21 +1,17 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useAsync } from "custom-hooks";
 import { API_TO_GET_ALL_CATEGORIES, getShuffledArray } from "utils";
+import { sharedInitialReducerState } from "reducer";
 
-/**
- * useCategory - hook to get states and 
- *        functions to work with category
- * 
- * @returns an object having structure  
-    { 
-      selectedCategory,
-      state,
-      dispatch,
-      setSelectedCategory,
-      getCategoryFilteredData,
-    }
- */
-export const useCategory = () => {
+const CategoryContext = createContext({
+  selectedCategory: "",
+  state: { ...sharedInitialReducerState },
+  dispatch: () => {},
+  setSelectedCategory: () => {},
+  getCategoryFilteredData: () => {},
+});
+
+const CategoryProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const { state, dispatch } = useAsync(API_TO_GET_ALL_CATEGORIES);
 
@@ -44,5 +40,13 @@ export const useCategory = () => {
     getCategoryFilteredData,
   };
 
-  return { ...value };
+  return (
+    <CategoryContext.Provider value={value}>
+      {children}
+    </CategoryContext.Provider>
+  );
 };
+
+const useCategory = () => useContext(CategoryContext);
+
+export { CategoryProvider, useCategory };

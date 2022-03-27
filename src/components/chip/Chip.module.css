@@ -1,11 +1,11 @@
-.Chip {
+.chip {
   background: var(--COLOR-NAVBAR-ACTIVE);
   border-radius: 2.5rem;
   min-width: 7ch;
   transition: background 0.5s;
 }
 
-.ActiveChip {
+.chip_active {
   background: var(--COLOR-PRIMARY);
   color: var(--COLOR-NAVBAR-ACTIVE);
 }

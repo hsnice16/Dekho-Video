@@ -4,7 +4,7 @@ import styles from "./FormContainer.module.css";
 const FormContainer = ({ children, handleSubmit, className }) => (
   <form
     onSubmit={handleSubmit}
-    className={`form m-auto p-2 shadow-unset ${className} ${styles.FormContainer}`}
+    className={`form m-auto p-2 shadow-unset ${className} ${styles.formContainer}`}
   >
     {children}
   </form>

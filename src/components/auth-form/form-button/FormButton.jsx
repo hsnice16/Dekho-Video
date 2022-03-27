@@ -7,8 +7,8 @@ import { isStatusLoading } from "utils";
 const FormButton = ({ buttonText, status }) => (
   <button
     disabled={isStatusLoading(status)}
-    className={`btn fw-bold mx-0 w-100pct ${styles.FormButton} ${
-      isStatusLoading(status) ? styles.FormBtnLoading : ""
+    className={`btn fw-bold mx-0 w-100pct ${styles.btnForm} ${
+      isStatusLoading(status) ? styles.btnForm_loading : ""
     }`}
   >
     {isStatusLoading(status) ? (
