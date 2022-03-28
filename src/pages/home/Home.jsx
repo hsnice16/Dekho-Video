@@ -1,24 +1,21 @@
-import { v4 as uuid } from "uuid";
 import styles from "./Home.module.css";
+import { v4 as uuid } from "uuid";
 import { Chip, VideoList } from "components";
 import { useDocumentTitle, useScrollToTop } from "custom-hooks";
 import { useCategory, useVideos } from "context";
-import { getEmptyArrayOfObjects } from "utils";
+import { getCategoryFilteredData, getEmptyArrayOfObjects } from "utils";
 
 export const Home = () => {
-  const {
-    selectedCategory,
-    state,
-    setSelectedCategory,
-    getCategoryFilteredData,
-  } = useCategory();
+  const { selectedCategory, state, setSelectedCategory } = useCategory();
   const { status: categoryStatus, data: categoryData } = state;
 
   const { videos } = useVideos();
   const { status: videosStatus, data: videosData } = videos;
 
   const filteredVideos =
-    videosStatus === "success" ? getCategoryFilteredData(videosData) : [];
+    videosStatus === "success"
+      ? getCategoryFilteredData(selectedCategory, videosData)
+      : [];
 
   useDocumentTitle("Home");
   useScrollToTop(selectedCategory);
@@ -51,7 +48,11 @@ export const Home = () => {
           )}
       </ul>
 
-      <VideoList videos={filteredVideos} status={videosStatus} />
+      <VideoList
+        videos={filteredVideos}
+        status={videosStatus}
+        className="p-4"
+      />
     </>
   );
 };

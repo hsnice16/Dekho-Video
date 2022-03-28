@@ -1,10 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
 import styles from "./VideoCard.module.css";
 import PropTypes from "prop-types";
 import { useOptionsList } from "context";
+import { ROUTE_WATCH_VIDEO } from "utils";
 
 export const VideoCard = ({ video, loading }) => {
+  const navigate = useNavigate();
   const { showOptionsListForVideo, toggleShowOptionsList, getOptionsList } =
     useOptionsList();
   const {
@@ -15,8 +18,17 @@ export const VideoCard = ({ video, loading }) => {
     isInWatchLater,
     isLiked,
     videoYTId,
+    _id,
   } = video;
   const optionsList = getOptionsList(isInWatchLater, isLiked);
+
+  const handleOverlayPlayClick = () => {
+    navigate(`${ROUTE_WATCH_VIDEO}/${_id}`);
+  };
+
+  const handleKeyDownOnOverlayPlay = (event) => {
+    if (event.key === "Enter") handleOverlayPlayClick();
+  };
 
   return loading ? (
     <div
@@ -31,7 +43,12 @@ export const VideoCard = ({ video, loading }) => {
     </div>
   ) : (
     <div className={`card card-vertical shadow-unset ${styles.videoCard}`}>
-      <div className="card-text-overlay">
+      <div
+        className="card-text-overlay"
+        onClick={handleOverlayPlayClick}
+        onKeyDown={handleKeyDownOnOverlayPlay}
+        tabIndex="0"
+      >
         <img
           loading="lazy"
           className="card-vertical-img"
@@ -59,8 +76,8 @@ export const VideoCard = ({ video, loading }) => {
           <p className="card-text fs-1p5">{creator}</p>
         </div>
 
-        <span
-          className={`cursor-ptr flex mt-0p5 relative ${styles.dotsIcon_span} ${
+        <button
+          className={`cursor-ptr flex mt-0p5 relative ${styles.dotsIcon_btn} ${
             showOptionsListForVideo === videoYTId
               ? styles.optionsList_isVisible
               : ""
@@ -83,7 +100,7 @@ export const VideoCard = ({ video, loading }) => {
               ))}
             </ul>
           )}
-        </span>
+        </button>
       </div>
     </div>
   );
@@ -105,6 +122,7 @@ VideoCard.propTypes = {
       url: PropTypes.string,
     }),
     title: PropTypes.string,
+    description: PropTypes.string,
     videoYTId: PropTypes.string,
   }),
   loading: PropTypes.bool,
@@ -126,6 +144,7 @@ VideoCard.defaultProps = {
       url: "",
     },
     title: "",
+    description: "",
     videoYTId: "",
   },
   loading: false,

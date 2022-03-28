@@ -1,11 +1,14 @@
-.dotsIcon_span {
+.dotsIcon_btn {
+  background: none;
+  border: none;
   border-radius: 50%;
+  color: var(--COLOR-TEXT);
   height: 3rem;
   transition: background 0.3s;
   min-width: 3rem;
 }
 
-.dotsIcon_span ul {
+.dotsIcon_btn ul {
   background: var(--COLOR-NAVBAR-BACKGROUND);
   right: 0;
   top: 0;
@@ -14,7 +17,7 @@
   z-index: var(--VIDEO-CARD-DOTS-ICON-Z-INDEX);
 }
 
-.dotsIcon_span ul li {
+.dotsIcon_btn ul li {
   transition: background 0.3s;
 }
 
@@ -48,8 +51,8 @@
   color: var(--COLOR-TEXT-DARK-SHADE);
 }
 
-.dotsIcon_span:hover,
-.dotsIcon_span ul li:hover,
+.dotsIcon_btn:hover,
+.dotsIcon_btn ul li:hover,
 .videoCard_loading span,
 .optionsList_isVisible {
   background: var(--COLOR-NAVBAR-ACTIVE);

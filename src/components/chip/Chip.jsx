@@ -1,20 +1,26 @@
 import styles from "./Chip.module.css";
 import PropTypes from "prop-types";
 
-export const Chip = ({ textToShow, activeChip, handleChipClick, loading }) => {
+export const Chip = ({
+  textToShow,
+  activeChip,
+  handleChipClick,
+  loading,
+  className,
+}) => {
   return loading ? (
     <span
-      className={`h-3p5 inline-block mx-1 px-1 py-0p5 ${styles.chip}`}
+      className={`h-3p5 inline-block mx-1 px-1 py-0p5 ${className} ${styles.chip}`}
     ></span>
   ) : (
-    <span
-      className={`cursor-ptr fw-bold inline-block mx-1 px-1 py-0p5 text-center ${
+    <button
+      className={`fs-1p5 inline-block mx-1 px-1 py-0p5 ${className} ${
         styles.chip
       } ${activeChip === textToShow ? styles.chip_active : ""}`}
       onClick={handleChipClick}
     >
       {textToShow}
-    </span>
+    </button>
   );
 };
 
@@ -23,6 +29,7 @@ Chip.propTypes = {
   activeChip: PropTypes.string,
   handleChipClick: PropTypes.func,
   loading: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Chip.defaultProps = {
@@ -30,4 +37,5 @@ Chip.defaultProps = {
   activeChip: "",
   handleChipClick: () => {},
   loading: false,
+  className: "",
 };

@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Navbar, SideNavbar, RestrictRoute } from "components";
+import { Navbar, NotFound, SideNavbar, RestrictRoute } from "components";
 import {
   Home,
   Playlists,
@@ -60,7 +60,7 @@ function App() {
           </Route>
 
           <Route
-            path={`${ROUTE_WATCH_VIDEO}/:id`}
+            path={`${ROUTE_WATCH_VIDEO}/:videoId`}
             element={<SingleVideoPage />}
           />
 
@@ -68,6 +68,16 @@ function App() {
           <Route path={ROUTE_LIKED} element={<Liked />} />
           <Route path={ROUTE_WATCH_LATER} element={<WatchLater />} />
           <Route path={ROUTE_HISTORY} element={<History />} />
+
+          <Route
+            path="*"
+            element={
+              <NotFound
+                documentTitle="Page Not Found"
+                textToShow="This page isn't available. Sorry about that."
+              />
+            }
+          />
 
           <Route path="/mockman-test" element={<Mockman />} />
         </Routes>

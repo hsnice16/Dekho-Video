@@ -13,6 +13,8 @@ export { Chip } from "./chip/Chip";
 export { VideoList } from "./list/video-list/VideoList";
 
 export { Navbar } from "./navbar/Navbar";
+export { NotFound } from "./not-found/NotFound";
+export { Button } from "./shared/button/Button";
 export { SideNavbar } from "./side-navbar/SideNavbar";
 
 export { RestrictRoute } from "./route/RestrictRoute";

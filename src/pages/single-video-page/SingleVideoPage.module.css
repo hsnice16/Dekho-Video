@@ -2,19 +2,16 @@
   max-width: 120rem;
 }
 
-.iFrame_container button {
-  align-items: center;
-  border: medium solid var(--COLOR-NAVBAR-BACKGROUND);
-  color: var(--COLOR-TEXT);
-  display: inline-flex;
-  font-size: 1.5rem;
-  font-weight: bold;
-  justify-content: center;
-  width: 12rem;
+.iFrame_container {
+  flex: 1;
 }
 
 .iFrame_container > div:nth-child(2) {
   border-bottom: thin solid var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.iFrame_container > iframe {
+  background: var(--COLOR-NAVBAR-ACTIVE);
 }
 
 .iFrame_container svg {
@@ -23,14 +20,9 @@
   width: 2rem;
 }
 
-.iFrame_container button:hover,
-.iFrame_container > iframe {
-  background: var(--COLOR-NAVBAR-ACTIVE);
-}
-
 /* --MD-BREAKPOINT */
 @media screen and (max-width: 940px) {
-  .singleVideoPage ul {
+  .singleVideoPage > div:nth-child(2) {
     display: none;
   }
 }
