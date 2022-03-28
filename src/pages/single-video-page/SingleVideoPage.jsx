@@ -1,4 +1,5 @@
 import styles from "./SingleVideoPage.module.css";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Chip, NotFound, VideoList } from "components";
 import {
@@ -6,11 +7,12 @@ import {
   API_TO_GET_SPECIFIC_VIDEO_DETAILS,
 } from "utils";
 import { useAsync } from "custom-hooks";
-import { useVideos } from "context";
+import { useHistory, useVideos } from "context";
 import { SingleVideo } from "./SingleVideo";
 
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
+  const { postHistoryCall } = useHistory();
   const { videos } = useVideos();
   const { status: videosStatus, data: videosData } = videos;
 
@@ -18,6 +20,13 @@ export const SingleVideoPage = () => {
   const {
     state: { data, status },
   } = useAsync({ api: `${api}/${videoId}`, propertyToGet });
+
+  useEffect(() => {
+    if (status === "success") {
+      postHistoryCall({ video: data });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   const filteredVideos =
     status === "success" && videosStatus === "success"
@@ -45,12 +54,12 @@ export const SingleVideoPage = () => {
 
           <div className="ml-2">
             {status === "loading" ? (
-              <Chip loading={true} className="mb-2" />
+              <Chip loading={true} className="mb-2 mx-1" />
             ) : (
               <Chip
                 textToShow={data.categoryName}
                 activeChip={data.categoryName}
-                className="mb-2"
+                className="mb-2 mx-1"
               />
             )}
 

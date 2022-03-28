@@ -14,7 +14,7 @@ export { VideoList } from "./list/video-list/VideoList";
 
 export { Navbar } from "./navbar/Navbar";
 export { NotFound } from "./not-found/NotFound";
+export { NullContent } from "./null-content/NullContent";
+export { RestrictRoute } from "./route/RestrictRoute";
 export { Button } from "./shared/button/Button";
 export { SideNavbar } from "./side-navbar/SideNavbar";
-
-export { RestrictRoute } from "./route/RestrictRoute";

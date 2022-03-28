@@ -90,9 +90,12 @@ export const VideoCard = ({ video, loading }) => {
 
           {showOptionsListForVideo === videoYTId && (
             <ul className="absolute border-r-0p2 fs-1p5 p-0p5">
-              {optionsList.map(({ _id, option, GetIcon }) => (
+              {optionsList.map(({ _id, option, handleClick, GetIcon }) => (
                 <li
                   key={_id}
+                  onClick={() => {
+                    handleClick(video._id);
+                  }}
                   className="align-i-fs border-r-0p2 flex my-0p5 p-0p5"
                 >
                   <GetIcon className={styles.listIcon} /> {option}

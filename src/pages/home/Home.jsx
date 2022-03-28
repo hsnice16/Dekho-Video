@@ -1,4 +1,3 @@
-import styles from "./Home.module.css";
 import { v4 as uuid } from "uuid";
 import { Chip, VideoList } from "components";
 import { useDocumentTitle, useScrollToTop } from "custom-hooks";
@@ -22,13 +21,11 @@ export const Home = () => {
 
   return (
     <>
-      <ul
-        className={`align-i-ctr flex py-1p5 px-5 ${styles.categoryChip_container}`}
-      >
+      <ul className="chip-container">
         {categoryStatus === "loading" &&
           getEmptyArrayOfObjects(3).map(({ _id }) => (
             <li key={_id}>
-              <Chip loading={true} />
+              <Chip loading={true} className="mx-1" />
             </li>
           ))}
 
@@ -39,9 +36,10 @@ export const Home = () => {
                 <Chip
                   textToShow={categoryName}
                   activeChip={selectedCategory}
-                  handleChipClick={() => {
+                  onClick={() => {
                     setSelectedCategory(categoryName);
                   }}
+                  className="mx-1"
                 />
               </li>
             )

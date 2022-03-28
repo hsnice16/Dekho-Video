@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import {
   CategoryProvider,
+  HistoryProvider,
   OptionsListProvider,
   UserProvider,
   VideosProvider,
@@ -19,13 +20,15 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <OptionsListProvider>
-          <VideosProvider>
-            <CategoryProvider>
-              <App />
-            </CategoryProvider>
-          </VideosProvider>
-        </OptionsListProvider>
+        <VideosProvider>
+          <CategoryProvider>
+            <HistoryProvider>
+              <OptionsListProvider>
+                <App />
+              </OptionsListProvider>
+            </HistoryProvider>
+          </CategoryProvider>
+        </VideosProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,

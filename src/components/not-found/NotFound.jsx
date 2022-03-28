@@ -12,6 +12,7 @@ export const NotFound = ({ documentTitle, className, textToShow }) => {
   return (
     <div className={`pt-5 text-center ${className}`}>
       <img
+        loading="lazy"
         className="max-w-20"
         src={crossSearch}
         alt="search icon with cross in center"
