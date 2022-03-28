@@ -7,11 +7,12 @@ import {
   API_TO_GET_SPECIFIC_VIDEO_DETAILS,
 } from "utils";
 import { useAsync } from "custom-hooks";
-import { useHistory, useVideos } from "context";
+import { useHistory, useUser, useVideos } from "context";
 import { SingleVideo } from "./SingleVideo";
 
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
+  const { userState } = useUser();
   const { postHistoryCall } = useHistory();
   const { videos } = useVideos();
   const { status: videosStatus, data: videosData } = videos;
@@ -22,11 +23,11 @@ export const SingleVideoPage = () => {
   } = useAsync({ api: `${api}/${videoId}`, propertyToGet });
 
   useEffect(() => {
-    if (status === "success") {
+    if (status === "success" && userState.isUserAuthTokenExist) {
       postHistoryCall({ video: data });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [status, userState.isUserAuthTokenExist]);
 
   const filteredVideos =
     status === "success" && videosStatus === "success"
