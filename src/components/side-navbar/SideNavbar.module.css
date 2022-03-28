@@ -11,6 +11,7 @@
   position: fixed;
   transition: width 0.3s;
   width: 24rem;
+  z-index: var(--SIDE-NAVBAR-Z-INDEX);
 }
 
 .sideNavbar a {

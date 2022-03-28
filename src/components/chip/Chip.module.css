@@ -1,6 +1,8 @@
 .chip {
   background: var(--COLOR-NAVBAR-ACTIVE);
+  border: none;
   border-radius: 2.5rem;
+  color: var(--COLOR-TEXT);
   min-width: 7ch;
   transition: background 0.5s;
 }
@@ -8,4 +10,5 @@
 .chip_active {
   background: var(--COLOR-PRIMARY);
   color: var(--COLOR-NAVBAR-ACTIVE);
+  font-weight: bold;
 }

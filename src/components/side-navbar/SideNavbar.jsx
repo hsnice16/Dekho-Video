@@ -1,6 +1,7 @@
+import styles from "./SideNavbar.module.css";
 import React, { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import styles from "./SideNavbar.module.css";
+import PropTypes from "prop-types";
 import { SideNavbarLinks } from "data";
 import { ROUTE_WATCH_VIDEO } from "utils";
 
@@ -48,4 +49,14 @@ export const SideNavbar = ({ showShrinkedSideNav, setShowShrinkedSideNav }) => {
       </ul>
     </nav>
   );
+};
+
+SideNavbar.propTypes = {
+  showShrinkedSideNav: PropTypes.bool,
+  setShowShrinkedSideNav: PropTypes.func,
+};
+
+SideNavbar.defaultProps = {
+  showShrinkedSideNav: false,
+  setShowShrinkedSideNav: () => {},
 };

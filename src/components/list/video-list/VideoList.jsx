@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { VideoCard } from "components";
 import { getEmptyArrayOfObjects } from "utils";
 
-export const VideoList = ({ videos, status }) => {
+export const VideoList = ({ videos, status, className }) => {
   return (
-    <ul className={`p-4 ${styles.videoList}`}>
+    <ul className={`${className} ${styles.videoList}`}>
       {status === "loading" &&
         getEmptyArrayOfObjects(4).map(({ _id }) => (
           <li key={_id}>
@@ -40,10 +40,12 @@ VideoList.propTypes = {
         url: PropTypes.string,
       }),
       title: PropTypes.string,
+      description: PropTypes.string,
       videoYTId: PropTypes.string,
     })
   ),
   status: PropTypes.string,
+  className: PropTypes.string,
 };
 
 VideoList.defaultProps = {
@@ -63,8 +65,10 @@ VideoList.defaultProps = {
         url: "",
       },
       title: "",
+      description: "",
       videoYTId: "",
     },
   ],
   status: "",
+  className: "",
 };

@@ -8,6 +8,11 @@ export const API_TO_GET_ALL_VIDEOS = {
   propertyToGet: "videos",
 };
 
+export const API_TO_GET_SPECIFIC_VIDEO_DETAILS = {
+  api: "/api/video",
+  propertyToGet: "video",
+};
+
 export const API_TO_POST_SIGN_IN_DETAILS = {
   api: "/api/auth/login",
   propertyToGet: "encodedToken",
