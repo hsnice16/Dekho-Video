@@ -1,14 +1,27 @@
 import PropTypes from "prop-types";
+import { useModal, useUser, useWatchLater } from "context";
 import { useDocumentTitle, useScrollToTop } from "custom-hooks";
 import { AddToPlaylistIcon, LikedIcon, OutlinedLikedIcon } from "assets";
 import { Button } from "components";
 
 export const SingleVideo = ({ video, loading }) => {
+  const { toggleModal } = useModal();
+  const { userState } = useUser();
+  const { isVideoInWatchLater } = useWatchLater();
   const { creator, creatorLogo, isLiked, title, description, videoYTId } =
     video;
 
   useScrollToTop(title);
   useDocumentTitle(title);
+
+  const handleSaveClick = () => {
+    if (userState.isUserAuthTokenExist) {
+      const toggleForVideo = isVideoInWatchLater(video._id)
+        ? { ...video, isInWatchLater: true }
+        : { ...video };
+      toggleModal(toggleForVideo);
+    }
+  };
 
   return loading ? (
     <iframe
@@ -43,7 +56,7 @@ export const SingleVideo = ({ video, loading }) => {
               </>
             )}
           </Button>
-          <Button className="btn btn-rounded py-0p5">
+          <Button onClick={handleSaveClick} className="btn btn-rounded py-0p5">
             <AddToPlaylistIcon /> Save
           </Button>
         </div>

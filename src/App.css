@@ -13,6 +13,7 @@
   --COLOR-TEXT: #ffffff;
   --COLOR-TEXT-DARK-SHADE: #d3d3d3;
 
+  --MODAL-Z-INDEX: 5;
   --NAVBAR-Z-INDEX: 4;
   --SIDE-NAVBAR-Z-INDEX: 3;
   --CATEGORY-CHIP-CONTAINER-Z-INDEX: 2;
@@ -40,6 +41,21 @@ main {
   min-height: 100vh;
   padding-bottom: 5rem;
   transition: margin-left 0.3s;
+}
+
+/* pages */
+
+.chip-container {
+  align-items: center;
+  background: var(--COLOR-MAIN-BACKGROUND);
+  border-bottom: thin solid var(--COLOR-NAVBAR-ACTIVE);
+  display: flex;
+  overflow-x: auto;
+  padding: 1.5rem 5rem;
+  position: sticky;
+  top: 8.1rem;
+  white-space: nowrap;
+  z-index: var(--CATEGORY-CHIP-CONTAINER-Z-INDEX);
 }
 
 /* override */
