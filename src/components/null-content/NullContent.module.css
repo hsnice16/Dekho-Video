@@ -1,0 +1,7 @@
+.nullContent_container a {
+  color: var(--COLOR-PRIMARY);
+}
+
+.nullContent_container a:hover {
+  color: var(--COLOR-PRIMARY-DARK-SHADE);
+}

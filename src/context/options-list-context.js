@@ -3,12 +3,14 @@ import { useLocation } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import {
   AddToPlaylistIcon,
+  DustbinIcon,
   LikedIcon,
   OutlinedLikedIcon,
   OutlinedWatchLaterIcon,
   WatchLaterIcon,
 } from "assets";
-import { ROUTE_ROOT } from "utils";
+import { ROUTE_ROOT, ROUTE_HISTORY } from "utils";
+import { useHistory } from "context";
 
 const OptionsListContext = createContext({
   showOptionsListForVideo: "",
@@ -19,6 +21,7 @@ const OptionsListContext = createContext({
 const OptionsListProvider = ({ children }) => {
   const [showOptionsListForVideo, setShowOptionsListForVideo] = useState("");
   const location = useLocation();
+  const { deleteSpecificHistoryCall } = useHistory();
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -43,10 +46,12 @@ const OptionsListProvider = ({ children }) => {
    * @returns options list
    */
   const getOptionsList = (isInWatchLater, isLiked) => {
+    // options list on Home page
     let optionsList = [
       {
         _id: uuid(),
         option: `${isInWatchLater ? "Remove from" : "Add to"} Watch Later`,
+        handleClick: () => {},
         GetIcon: (props) =>
           isInWatchLater ? (
             <WatchLaterIcon {...props} />
@@ -57,26 +62,43 @@ const OptionsListProvider = ({ children }) => {
       {
         _id: uuid(),
         option: "Add to Playlist",
+        handleClick: () => {},
         GetIcon: (props) => <AddToPlaylistIcon {...props} />,
       },
     ];
 
+    // options list on History page
     optionsList =
-      location.pathname === ROUTE_ROOT
-        ? [...optionsList]
-        : [
-            ...optionsList,
+      location.pathname === ROUTE_HISTORY
+        ? [
             {
               _id: uuid(),
-              option: `${isLiked ? "Remove from" : "Add to"} Liked`,
-              GetIcon: (props) =>
-                isLiked ? (
-                  <LikedIcon {...props} />
-                ) : (
-                  <OutlinedLikedIcon {...props} />
-                ),
+              option: "Remove from History",
+              handleClick: (id) => {
+                deleteSpecificHistoryCall(id);
+              },
+              GetIcon: (props) => <DustbinIcon {...props} />,
             },
-          ];
+          ]
+        : optionsList;
+
+    // options list on page other than Home and History
+    optionsList = [ROUTE_ROOT, ROUTE_HISTORY].includes(location.pathname)
+      ? optionsList
+      : [
+          ...optionsList,
+          {
+            _id: uuid(),
+            option: `${isLiked ? "Remove from" : "Add to"} Liked`,
+            handleClick: () => {},
+            GetIcon: (props) =>
+              isLiked ? (
+                <LikedIcon {...props} />
+              ) : (
+                <OutlinedLikedIcon {...props} />
+              ),
+          },
+        ];
 
     return optionsList;
   };

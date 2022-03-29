@@ -1,4 +1,5 @@
 import styles from "./SingleVideoPage.module.css";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Chip, NotFound, VideoList } from "components";
 import {
@@ -6,11 +7,13 @@ import {
   API_TO_GET_SPECIFIC_VIDEO_DETAILS,
 } from "utils";
 import { useAsync } from "custom-hooks";
-import { useVideos } from "context";
+import { useHistory, useUser, useVideos } from "context";
 import { SingleVideo } from "./SingleVideo";
 
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
+  const { userState } = useUser();
+  const { postHistoryCall } = useHistory();
   const { videos } = useVideos();
   const { status: videosStatus, data: videosData } = videos;
 
@@ -18,6 +21,13 @@ export const SingleVideoPage = () => {
   const {
     state: { data, status },
   } = useAsync({ api: `${api}/${videoId}`, propertyToGet });
+
+  useEffect(() => {
+    if (status === "success" && userState.isUserAuthTokenExist) {
+      postHistoryCall({ video: data });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, userState.isUserAuthTokenExist]);
 
   const filteredVideos =
     status === "success" && videosStatus === "success"
@@ -45,12 +55,12 @@ export const SingleVideoPage = () => {
 
           <div className="ml-2">
             {status === "loading" ? (
-              <Chip loading={true} className="mb-2" />
+              <Chip loading={true} className="mb-2 mx-1" />
             ) : (
               <Chip
                 textToShow={data.categoryName}
                 activeChip={data.categoryName}
-                className="mb-2"
+                className="mb-2 mx-1"
               />
             )}
 
