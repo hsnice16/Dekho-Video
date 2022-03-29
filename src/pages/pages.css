@@ -1,7 +1,10 @@
-.categoryChip_container {
+.chip-container {
+  align-items: center;
   background: var(--COLOR-MAIN-BACKGROUND);
   border-bottom: thin solid var(--COLOR-NAVBAR-ACTIVE);
+  display: flex;
   overflow-x: auto;
+  padding: 1.5rem 5rem;
   position: sticky;
   top: 8.1rem;
   white-space: nowrap;
