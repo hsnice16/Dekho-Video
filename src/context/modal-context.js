@@ -21,10 +21,11 @@ const ModalProvider = ({ children }) => {
   const toggleModal = (video) => {
     dispatch({ type: ACTION_TYPE_TOGGLE_MODAL, payload: video });
 
-    console.log(video);
-
-    if (video.isInWatchLater)
+    if (video.isInWatchLater) {
       dispatch({ type: ACTION_TYPE_CHECK_WATCH_LATER, payload: true });
+    } else {
+      dispatch({ type: ACTION_TYPE_CHECK_WATCH_LATER, payload: false });
+    }
   };
 
   const handleWatchLaterDispatch = (event) => {
