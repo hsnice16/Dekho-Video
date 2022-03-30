@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
-import { useUser } from "context";
+import { useToast, useUser } from "context";
 import {
   sharedInitialReducerState,
   sharedReducer,
@@ -30,6 +30,7 @@ export const usePrivateAsync = (apiToCall) => {
       authorization: userState.userAuthToken,
     },
   };
+  const { handleAddMoreToasts } = useToast();
 
   const [state, dispatch] = useReducer(
     sharedReducer,
@@ -54,6 +55,7 @@ export const usePrivateAsync = (apiToCall) => {
         });
       }
     })();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userState.isUserAuthTokenExist]);
 
@@ -67,6 +69,15 @@ export const usePrivateAsync = (apiToCall) => {
         type: ACTION_TYPE_SUCCESS,
         payload: response.data[propertyToGet],
       });
+
+      if (propertyToGet !== "history") {
+        const [msg, type] =
+          propertyToGet === "watchlater"
+            ? ["Added in Watch Later 🎉", "private_watch_later"]
+            : ["Added in Liked 🎉", "private_liked"];
+
+        handleAddMoreToasts({ msg, type });
+      }
     } catch (error) {
       const { status } = error.response;
 
@@ -94,6 +105,15 @@ export const usePrivateAsync = (apiToCall) => {
         type: ACTION_TYPE_SUCCESS,
         payload: response.data[propertyToGet],
       });
+
+      const [msg, type] =
+        propertyToGet === "history"
+          ? ["Cleared All History 🎉", "private_history"]
+          : propertyToGet === "watchlater"
+          ? ["Cleared All Watch Later 🎉", "private_watch_later"]
+          : ["Cleared All Liked 🎉", "private_liked"];
+
+      handleAddMoreToasts({ msg, type });
     } catch (error) {
       dispatch({
         type: ACTION_TYPE_ERROR,
@@ -112,6 +132,15 @@ export const usePrivateAsync = (apiToCall) => {
         type: ACTION_TYPE_SUCCESS,
         payload: response.data[propertyToGet],
       });
+
+      const [msg, type] =
+        propertyToGet === "history"
+          ? ["Removed from History 🎉", "private_history"]
+          : propertyToGet === "watchlater"
+          ? ["Removed from Watch Later 🎉", "private_watch_later"]
+          : ["Removed from Liked 🎉", "private_liked"];
+
+      handleAddMoreToasts({ msg, type });
     } catch (error) {
       dispatch({
         type: ACTION_TYPE_ERROR,

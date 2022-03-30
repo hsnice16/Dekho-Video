@@ -35,7 +35,7 @@ const ModalProvider = ({ children }) => {
     });
 
     if (event.target.checked) {
-      postWatchLater({ video: { ...modal.video, isInWatchLater: true } });
+      postWatchLater({ video: { ...modal.video } });
     } else {
       deleteSpecificWatchLater(modal.video._id);
     }

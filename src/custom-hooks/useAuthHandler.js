@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUser } from "context";
+import { useToast, useUser } from "context";
 import { useCookieHandler } from "custom-hooks";
 import {
   ROUTE_ROOT,
@@ -28,6 +28,7 @@ const useAuthHandler = () => {
   const navigate = useNavigate();
   const { setUserState } = useUser();
   const { setUserAuthTokenCookie } = useCookieHandler();
+  const { handleAddMoreToasts } = useToast();
 
   const [authState, dispatch] = useReducer(
     authReducer,
@@ -54,10 +55,15 @@ const useAuthHandler = () => {
         });
 
         setUserAuthTokenCookie(token, rememberMe);
+        handleAddMoreToasts({
+          msg: "Now you are an authenticate user. Hope you would have a great time! Congrats 🎉🎉",
+          type: "entered_in_system",
+        });
 
         dispatch({ type: ACTION_TYPE_SUCCESS });
       }
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 

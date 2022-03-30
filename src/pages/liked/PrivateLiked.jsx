@@ -4,18 +4,17 @@ import { useDocumentTitle } from "custom-hooks";
 import { ClearAllButton, NullContent, VideoList } from "components";
 import { ROUTE_ROOT } from "utils";
 
-export const PrivateWatchLater = () => {
+export const PrivateLiked = () => {
   const { userState } = useUser();
-  const { getLikedMappedData } = useLiked();
-  const { watchLater, deleteAllWatchLater } = useWatchLater();
-  const { status, data } = watchLater;
+  const { getWatchLaterMappedData } = useWatchLater();
+  const { liked, deleteAllLiked } = useLiked();
+  const { status, data } = liked;
 
-  const mappedVideos = status === "success" ? getLikedMappedData(data) : [];
+  const mappedVideos =
+    status === "success" ? getWatchLaterMappedData(data) : [];
 
   const titleToShow =
-    status === "success" && data.length <= 0
-      ? "Add Video today"
-      : "Watch Later";
+    status === "success" && data.length <= 0 ? "Like Video today" : "Liked";
   useDocumentTitle(titleToShow);
 
   return (
@@ -23,7 +22,7 @@ export const PrivateWatchLater = () => {
       {status === "loading" && <ClearAllButton loading={true} />}
 
       {status === "success" && data.length > 0 && (
-        <ClearAllButton onClick={deleteAllWatchLater} />
+        <ClearAllButton onClick={deleteAllLiked} />
       )}
 
       <VideoList videos={mappedVideos} status={status} className="p-4" />
@@ -31,8 +30,7 @@ export const PrivateWatchLater = () => {
       {status === "success" && data.length <= 0 && (
         <NullContent isUserLoggedIn={userState.isUserAuthTokenExist}>
           <h1>
-            Nothing in watch later. <Link to={ROUTE_ROOT}>Add Video</Link>{" "}
-            today.
+            Nothing in liked. <Link to={ROUTE_ROOT}>Like Video</Link> today.
           </h1>
         </NullContent>
       )}

@@ -1,5 +1,5 @@
 import styles from "./SingleVideoPage.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Chip, NotFound, VideoList } from "components";
 import {
@@ -7,13 +7,20 @@ import {
   API_TO_GET_SPECIFIC_VIDEO_DETAILS,
 } from "utils";
 import { useAsync } from "custom-hooks";
-import { useHistory, useUser, useVideos, useWatchLater } from "context";
+import {
+  useHistory,
+  useLiked,
+  useUser,
+  useVideos,
+  useWatchLater,
+} from "context";
 import { SingleVideo } from "./SingleVideo";
 
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
   const { userState } = useUser();
-  const { getWatchLaterFilteredData } = useWatchLater();
+  const { getLikedMappedData, isVideoLiked } = useLiked();
+  const { getWatchLaterMappedData } = useWatchLater();
   const { postHistory } = useHistory();
   const { videos } = useVideos();
   const { status: videosStatus, data: videosData } = videos;
@@ -23,8 +30,11 @@ export const SingleVideoPage = () => {
     state: { data, status },
   } = useAsync({ api: `${api}/${videoId}`, propertyToGet });
 
+  const [isLiked, setIsLiked] = useState(false);
+
   useEffect(() => {
     if (status === "success" && userState.isUserAuthTokenExist) {
+      setIsLiked(isVideoLiked(data._id));
       postHistory({ video: data });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,9 +42,11 @@ export const SingleVideoPage = () => {
 
   const filteredVideos =
     status === "success" && videosStatus === "success"
-      ? getWatchLaterFilteredData(
-          getCategoryFilteredData(data.categoryName, videosData).filter(
-            ({ _id }) => _id !== videoId
+      ? getLikedMappedData(
+          getWatchLaterMappedData(
+            getCategoryFilteredData(data.categoryName, videosData).filter(
+              ({ _id }) => _id !== videoId
+            )
           )
         )
       : [];
@@ -52,7 +64,11 @@ export const SingleVideoPage = () => {
             {status === "loading" ? (
               <SingleVideo loading={true} />
             ) : (
-              <SingleVideo video={data} />
+              <SingleVideo
+                video={data}
+                isLiked={isLiked}
+                setIsLiked={setIsLiked}
+              />
             )}
           </div>
 

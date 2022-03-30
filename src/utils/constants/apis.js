@@ -32,3 +32,8 @@ export const API_TO_GET_WATCH_LATER = {
   api: "/api/user/watchlater",
   propertyToGet: "watchlater",
 };
+
+export const API_TO_GET_LIKED = {
+  api: "/api/user/likes",
+  propertyToGet: "likes",
+};

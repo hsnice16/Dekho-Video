@@ -63,7 +63,7 @@ export const addVideoToWatchLaterHandler = function (schema, request) {
         }
       );
     }
-    user.watchlater.push(video);
+    user.watchlater.push({ ...video, isInWatchLater: true, isLiked: false });
     return new Response(201, {}, { watchlater: user.watchlater });
   } catch (error) {
     return new Response(

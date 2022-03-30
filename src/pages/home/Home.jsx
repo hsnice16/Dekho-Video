@@ -5,7 +5,7 @@ import { useCategory, useVideos, useWatchLater } from "context";
 import { getCategoryFilteredData, getEmptyArrayOfObjects } from "utils";
 
 export const Home = () => {
-  const { getWatchLaterFilteredData } = useWatchLater();
+  const { getWatchLaterMappedData } = useWatchLater();
   const { selectedCategory, state, setSelectedCategory } = useCategory();
   const { status: categoryStatus, data: categoryData } = state;
 
@@ -14,7 +14,7 @@ export const Home = () => {
 
   const filteredVideos =
     videosStatus === "success"
-      ? getWatchLaterFilteredData(
+      ? getWatchLaterMappedData(
           getCategoryFilteredData(selectedCategory, videosData)
         )
       : [];

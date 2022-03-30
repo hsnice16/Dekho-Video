@@ -6,12 +6,15 @@ import App from "./App";
 import {
   CategoryProvider,
   HistoryProvider,
+  LikedProvider,
   ModalProvider,
   OptionsListProvider,
+  ToastProvider,
   UserProvider,
   VideosProvider,
   WatchLaterProvider,
 } from "context";
+import { Compose } from "components";
 
 import { makeServer } from "./server";
 
@@ -20,23 +23,22 @@ makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <VideosProvider>
-          <CategoryProvider>
-            <HistoryProvider>
-              <WatchLaterProvider>
-                <OptionsListProvider>
-                  <ModalProvider>
-                    <App />
-                  </ModalProvider>
-                </OptionsListProvider>
-              </WatchLaterProvider>
-            </HistoryProvider>
-          </CategoryProvider>
-        </VideosProvider>
-      </UserProvider>
-    </BrowserRouter>
+    <Compose
+      components={[
+        BrowserRouter,
+        UserProvider,
+        ToastProvider,
+        VideosProvider,
+        CategoryProvider,
+        HistoryProvider,
+        WatchLaterProvider,
+        LikedProvider,
+        OptionsListProvider,
+        ModalProvider,
+      ]}
+    >
+      <App />
+    </Compose>
   </React.StrictMode>,
   document.getElementById("root")
 );
