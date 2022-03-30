@@ -1,10 +1,11 @@
 import { v4 as uuid } from "uuid";
 import { Chip, VideoList } from "components";
 import { useDocumentTitle, useScrollToTop } from "custom-hooks";
-import { useCategory, useVideos } from "context";
+import { useCategory, useVideos, useWatchLater } from "context";
 import { getCategoryFilteredData, getEmptyArrayOfObjects } from "utils";
 
 export const Home = () => {
+  const { getWatchLaterFilteredData } = useWatchLater();
   const { selectedCategory, state, setSelectedCategory } = useCategory();
   const { status: categoryStatus, data: categoryData } = state;
 
@@ -13,7 +14,9 @@ export const Home = () => {
 
   const filteredVideos =
     videosStatus === "success"
-      ? getCategoryFilteredData(selectedCategory, videosData)
+      ? getWatchLaterFilteredData(
+          getCategoryFilteredData(selectedCategory, videosData)
+        )
       : [];
 
   useDocumentTitle("Home");

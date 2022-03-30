@@ -7,13 +7,14 @@ import {
   API_TO_GET_SPECIFIC_VIDEO_DETAILS,
 } from "utils";
 import { useAsync } from "custom-hooks";
-import { useHistory, useUser, useVideos } from "context";
+import { useHistory, useUser, useVideos, useWatchLater } from "context";
 import { SingleVideo } from "./SingleVideo";
 
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
   const { userState } = useUser();
-  const { postHistoryCall } = useHistory();
+  const { getWatchLaterFilteredData } = useWatchLater();
+  const { postHistory } = useHistory();
   const { videos } = useVideos();
   const { status: videosStatus, data: videosData } = videos;
 
@@ -24,15 +25,17 @@ export const SingleVideoPage = () => {
 
   useEffect(() => {
     if (status === "success" && userState.isUserAuthTokenExist) {
-      postHistoryCall({ video: data });
+      postHistory({ video: data });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, userState.isUserAuthTokenExist]);
 
   const filteredVideos =
     status === "success" && videosStatus === "success"
-      ? getCategoryFilteredData(data.categoryName, videosData).filter(
-          ({ _id }) => _id !== videoId
+      ? getWatchLaterFilteredData(
+          getCategoryFilteredData(data.categoryName, videosData).filter(
+            ({ _id }) => _id !== videoId
+          )
         )
       : [];
 

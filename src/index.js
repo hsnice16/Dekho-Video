@@ -6,9 +6,11 @@ import App from "./App";
 import {
   CategoryProvider,
   HistoryProvider,
+  ModalProvider,
   OptionsListProvider,
   UserProvider,
   VideosProvider,
+  WatchLaterProvider,
 } from "context";
 
 import { makeServer } from "./server";
@@ -23,9 +25,13 @@ ReactDOM.render(
         <VideosProvider>
           <CategoryProvider>
             <HistoryProvider>
-              <OptionsListProvider>
-                <App />
-              </OptionsListProvider>
+              <WatchLaterProvider>
+                <OptionsListProvider>
+                  <ModalProvider>
+                    <App />
+                  </ModalProvider>
+                </OptionsListProvider>
+              </WatchLaterProvider>
             </HistoryProvider>
           </CategoryProvider>
         </VideosProvider>

@@ -1,4 +1,5 @@
 import { Response } from "miragejs";
+import { getShuffledArray } from "utils";
 
 /**
  * All the routes related to Videos are present here.
@@ -12,7 +13,7 @@ import { Response } from "miragejs";
 
 export const getAllVideosHandler = function () {
   try {
-    return new Response(200, {}, { videos: this.db.videos });
+    return new Response(200, {}, { videos: getShuffledArray(this.db.videos) });
   } catch (error) {
     return new Response(
       500,

@@ -1,5 +1,3 @@
-import { getShuffledArray } from "utils";
-
 /**
  * getCategoryFilteredData - function to get filtered
  *                           array category wise
@@ -9,11 +7,7 @@ import { getShuffledArray } from "utils";
  * @return a shuffled filtered array
  */
 export const getCategoryFilteredData = (categoryToFilter, dataToFilter) => {
-  return getShuffledArray(
-    dataToFilter.filter((video) =>
-      categoryToFilter === "All"
-        ? video
-        : video.categoryName === categoryToFilter
-    )
+  return dataToFilter.filter((video) =>
+    categoryToFilter === "All" ? video : video.categoryName === categoryToFilter
   );
 };
