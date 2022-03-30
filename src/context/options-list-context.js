@@ -10,7 +10,7 @@ import {
   WatchLaterIcon,
 } from "assets";
 import { ROUTE_ROOT, ROUTE_HISTORY } from "utils";
-import { useHistory } from "context";
+import { useHistory, useUser, useWatchLater } from "context";
 
 const OptionsListContext = createContext({
   showOptionsListForVideo: "",
@@ -21,7 +21,9 @@ const OptionsListContext = createContext({
 const OptionsListProvider = ({ children }) => {
   const [showOptionsListForVideo, setShowOptionsListForVideo] = useState("");
   const location = useLocation();
-  const { deleteSpecificHistoryCall } = useHistory();
+  const { userState } = useUser();
+  const { deleteSpecificHistory } = useHistory();
+  const { deleteSpecificWatchLater, postWatchLater } = useWatchLater();
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -35,23 +37,21 @@ const OptionsListProvider = ({ children }) => {
     };
   }, [showOptionsListForVideo]);
 
-  /**
-   * getOptionsList - function to
-   *          get options list based on the
-   *          current page and parameters value
-   *
-   * @param {bool} isInWatchLater - is current video
-   *                                in Watch Later?
-   * @param {bool} isLiked - is current video Liked?
-   * @returns options list
-   */
   const getOptionsList = (isInWatchLater, isLiked) => {
     // options list on Home page
     let optionsList = [
       {
         _id: uuid(),
         option: `${isInWatchLater ? "Remove from" : "Add to"} Watch Later`,
-        handleClick: () => {},
+        handleClick: (id, details) => {
+          if (userState.isUserAuthTokenExist) {
+            if (isInWatchLater) {
+              deleteSpecificWatchLater(id);
+            } else {
+              postWatchLater({ video: { ...details, isInWatchLater: true } });
+            }
+          }
+        },
         GetIcon: (props) =>
           isInWatchLater ? (
             <WatchLaterIcon {...props} />
@@ -61,7 +61,7 @@ const OptionsListProvider = ({ children }) => {
       },
       {
         _id: uuid(),
-        option: "Add to Playlist",
+        option: "Save to Playlist",
         handleClick: () => {},
         GetIcon: (props) => <AddToPlaylistIcon {...props} />,
       },
@@ -75,7 +75,7 @@ const OptionsListProvider = ({ children }) => {
               _id: uuid(),
               option: "Remove from History",
               handleClick: (id) => {
-                deleteSpecificHistoryCall(id);
+                deleteSpecificHistory(id);
               },
               GetIcon: (props) => <DustbinIcon {...props} />,
             },

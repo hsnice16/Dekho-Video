@@ -10,17 +10,19 @@ import {
 } from "reducer";
 
 /**
- * useSharedPrivateAsync - hook to call GET and POST private APIs
+ * usePrivateAsync - hook to call private APIs
  * 
  * @param {string} apiToCall - api to call
  * @returns an object {
      config,
      state,
      dispatch,
-     postPrivateData
+     postPrivateData,
+     deleteAllPrivateData,
+     deleteSpecificPrivateData,
    }
  */
-export const useSharedPrivateAsync = (apiToCall) => {
+export const usePrivateAsync = (apiToCall) => {
   const { api, propertyToGet } = apiToCall;
   const { userState } = useUser();
   const config = {
@@ -82,11 +84,49 @@ export const useSharedPrivateAsync = (apiToCall) => {
     }
   };
 
+  const deleteAllPrivateData = async () => {
+    dispatch({ type: ACTION_TYPE_LOADING });
+
+    try {
+      const response = await axios.delete(`${api}/all`, config);
+
+      dispatch({
+        type: ACTION_TYPE_SUCCESS,
+        payload: response.data[propertyToGet],
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_TYPE_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+
+  const deleteSpecificPrivateData = async (id) => {
+    dispatch({ type: ACTION_TYPE_LOADING });
+
+    try {
+      const response = await axios.delete(`${api}/${id}`, config);
+
+      dispatch({
+        type: ACTION_TYPE_SUCCESS,
+        payload: response.data[propertyToGet],
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_TYPE_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+
   const value = {
     config,
     state,
     dispatch,
     postPrivateData,
+    deleteAllPrivateData,
+    deleteSpecificPrivateData,
   };
 
   return value;

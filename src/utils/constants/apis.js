@@ -27,3 +27,8 @@ export const API_TO_GET_HISTORY = {
   api: "/api/user/history",
   propertyToGet: "history",
 };
+
+export const API_TO_GET_WATCH_LATER = {
+  api: "/api/user/watchlater",
+  propertyToGet: "watchlater",
+};

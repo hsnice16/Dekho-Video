@@ -1,0 +1,30 @@
+.saveModal {
+  z-index: var(--NAVBAR-Z-INDEX);
+}
+
+.saveModal button:hover {
+  background: var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.saveModal > div {
+  background: var(--COLOR-NAVBAR-BACKGROUND);
+  border: none;
+  border-radius: 0.2rem;
+  min-width: 23rem;
+  width: 23rem;
+  z-index: var(--MODAL-Z-INDEX);
+}
+
+.saveModal .modalHead {
+  border-color: var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.saveModal svg {
+  color: var(--COLOR-TEXT);
+}
+
+.saveModal input,
+.saveModal svg {
+  height: 2rem;
+  width: 2rem;
+}

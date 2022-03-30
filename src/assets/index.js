@@ -4,6 +4,7 @@ export { OutlinedAvatar } from "./avatar/OutlinedAvatar";
 export { BrandLogo } from "./brand-logo/BrandLogo";
 
 export { AddToPlaylistIcon } from "./icons/AddToPlaylistIcon";
+export { CrossIcon } from "./icons/CrossIcon";
 export { DustbinIcon } from "./icons/DustbinIcon";
 export { HistoryIcon } from "./icons/HistoryIcon";
 export { HomeIcon } from "./icons/HomeIcon";
