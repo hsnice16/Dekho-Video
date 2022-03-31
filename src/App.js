@@ -5,6 +5,7 @@ import { Navbar, NotFound, SideNavbar, RestrictRoute } from "components";
 import {
   Home,
   Playlists,
+  PlaylistDetails,
   Liked,
   WatchLater,
   History,
@@ -15,6 +16,7 @@ import {
 import {
   ROUTE_ROOT,
   ROUTE_PLAYLISTS,
+  ROUTE_PLAYLIST,
   ROUTE_LIKED,
   ROUTE_WATCH_LATER,
   ROUTE_HISTORY,
@@ -65,6 +67,11 @@ function App() {
           />
 
           <Route path={ROUTE_PLAYLISTS} element={<Playlists />} />
+          <Route
+            path={`${ROUTE_PLAYLIST}/:playlistId`}
+            element={<PlaylistDetails />}
+          />
+
           <Route path={ROUTE_LIKED} element={<Liked />} />
           <Route path={ROUTE_WATCH_LATER} element={<WatchLater />} />
           <Route path={ROUTE_HISTORY} element={<History />} />

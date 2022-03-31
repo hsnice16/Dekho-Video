@@ -2,7 +2,7 @@ import styles from "./ClearAllButton.module.css";
 import PropTypes from "prop-types";
 import { Chip } from "components";
 
-export const ClearAllButton = ({ loading, onClick }) => {
+export const ClearAllButton = ({ loading, onClick, textToShow }) => {
   return loading ? (
     <div className="chip-container">
       <Chip loading={true} className="ml-auto mr-1" />
@@ -10,8 +10,8 @@ export const ClearAllButton = ({ loading, onClick }) => {
   ) : (
     <div className="chip-container">
       <Chip
-        textToShow="Clear All"
-        activeChip="Clear All"
+        textToShow={textToShow || "Clear All"}
+        activeChip={textToShow || "Clear All"}
         onClick={onClick}
         className={`ml-auto mr-1 ${styles.clearAll_btn}`}
       />
@@ -22,9 +22,11 @@ export const ClearAllButton = ({ loading, onClick }) => {
 ClearAllButton.propTypes = {
   loading: PropTypes.bool,
   onClick: PropTypes.func,
+  textToShow: PropTypes.string,
 };
 
 ClearAllButton.defaultProps = {
   loading: false,
   onClick: () => {},
+  textToShow: "",
 };

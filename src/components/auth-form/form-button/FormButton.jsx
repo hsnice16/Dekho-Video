@@ -1,5 +1,6 @@
-import { FaDoorOpen } from "react-icons/fa";
 import styles from "./FormButton.module.css";
+import classNames from "classnames";
+import { FaDoorOpen } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { spinner5 } from "assets";
 import { isStatusLoading } from "utils";
@@ -7,9 +8,14 @@ import { isStatusLoading } from "utils";
 const FormButton = ({ buttonText, status }) => (
   <button
     disabled={isStatusLoading(status)}
-    className={`btn fw-bold mx-0 w-100pct ${styles.btnForm} ${
+    className={classNames(
+      "btn",
+      "fw-bold",
+      "mx-0",
+      "w-100pct",
+      styles.btnForm,
       isStatusLoading(status) ? styles.btnForm_loading : ""
-    }`}
+    )}
   >
     {isStatusLoading(status) ? (
       <>

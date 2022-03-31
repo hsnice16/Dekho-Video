@@ -1,6 +1,7 @@
+import styles from "./FormPasswordInput.module.css";
+import classNames from "classnames";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import styles from "./FormPasswordInput.module.css";
 import PropTypes from "prop-types";
 import { isInputTypePassword } from "utils";
 
@@ -15,7 +16,16 @@ const FormPasswordInput = ({ name, id, value, handleChange }) => {
 
   return (
     <div
-      className={`bg-unset border-r-0p2 flex input mx-0 p-0 w-100pct ${styles.passwordDiv}`}
+      className={classNames(
+        "bg-unset",
+        "border-r-0p2",
+        "flex",
+        "input",
+        "mx-0",
+        "p-0",
+        "w-100pct",
+        styles.passwordDiv
+      )}
     >
       <input
         className="bg-unset border-none input m-0 pr-0"

@@ -1,0 +1,22 @@
+.playlistCard {
+  max-width: 24rem;
+}
+
+.playlistCard a:hover {
+  color: var(--COLOR-TEXT);
+}
+
+.playlistCard h2 {
+  -webkit-line-clamp: 1;
+}
+
+.playlistCard img {
+  height: 15rem;
+}
+
+.videoCount_playlist {
+  background: var(--COLOR-NAVBAR-BACKGROUND-LIGHT);
+  right: 0;
+  top: 0;
+  width: 40%;
+}

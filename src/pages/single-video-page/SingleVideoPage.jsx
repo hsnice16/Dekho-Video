@@ -1,4 +1,5 @@
 import styles from "./SingleVideoPage.module.css";
+import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Chip, NotFound, VideoList } from "components";
@@ -37,6 +38,7 @@ export const SingleVideoPage = () => {
       setIsLiked(isVideoLiked(data._id));
       postHistory({ video: data });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, userState.isUserAuthTokenExist]);
 
@@ -59,8 +61,15 @@ export const SingleVideoPage = () => {
           textToShow="This video isn't available anymore"
         />
       ) : (
-        <div className={`flex m-auto p-3 ${styles.singleVideoPage}`}>
-          <div className={`${styles.iFrame_container}`}>
+        <div
+          className={classNames(
+            "flex",
+            "m-auto",
+            "p-3",
+            styles.singleVideoPage
+          )}
+        >
+          <div className={styles.iFrame_container}>
             {status === "loading" ? (
               <SingleVideo loading={true} />
             ) : (
