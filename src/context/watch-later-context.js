@@ -10,8 +10,8 @@ const WatchLaterContext = createContext({
   postWatchLater: () => {},
   deleteAllWatchLater: () => {},
   deleteSpecificWatchLater: () => {},
-  getWatchLaterFilteredData: () => {},
-  isVideoInWatchLater: () => {}
+  getWatchLaterMappedData: () => {},
+  isVideoInWatchLater: () => {},
 });
 
 const WatchLaterProvider = ({ children }) => {
@@ -28,7 +28,7 @@ const WatchLaterProvider = ({ children }) => {
     return watchLater.data.some(({ _id }) => _id === videoId);
   };
 
-  const getWatchLaterFilteredData = (dataToFilter) => {
+  const getWatchLaterMappedData = (dataToFilter) => {
     if (userState.isUserAuthTokenExist && watchLater.data) {
       return watchLater.data.length > 0
         ? dataToFilter.map((video) =>
@@ -48,7 +48,7 @@ const WatchLaterProvider = ({ children }) => {
     postWatchLater,
     deleteAllWatchLater,
     deleteSpecificWatchLater,
-    getWatchLaterFilteredData,
+    getWatchLaterMappedData,
     isVideoInWatchLater,
   };
 

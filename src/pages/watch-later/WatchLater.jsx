@@ -17,7 +17,7 @@ export const WatchLater = () => {
       titleToShow="Log In to see"
     >
       <h1>
-        <Link to={ROUTE_SIGN_IN}>Log In</Link> to see your watch later.
+        <Link to={ROUTE_SIGN_IN}>Log In</Link> to see your watch later videos.
       </h1>
     </NullContent>
   );

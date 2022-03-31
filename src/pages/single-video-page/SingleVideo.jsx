@@ -1,25 +1,47 @@
 import PropTypes from "prop-types";
-import { useModal, useUser, useWatchLater } from "context";
+import { useLiked, useModal, useToast, useUser, useWatchLater } from "context";
 import { useDocumentTitle, useScrollToTop } from "custom-hooks";
 import { AddToPlaylistIcon, LikedIcon, OutlinedLikedIcon } from "assets";
 import { Button } from "components";
 
-export const SingleVideo = ({ video, loading }) => {
+export const SingleVideo = ({ video, loading, isLiked, setIsLiked }) => {
   const { toggleModal } = useModal();
   const { userState } = useUser();
+  const { handleAddMoreToasts } = useToast();
+  const { postLiked, deleteSpecificLiked } = useLiked();
   const { isVideoInWatchLater } = useWatchLater();
-  const { creator, creatorLogo, isLiked, title, description, videoYTId } =
-    video;
+  const { _id, creator, creatorLogo, title, description, videoYTId } = video;
 
   useScrollToTop(title);
   useDocumentTitle(title);
 
+  const handleLikeClick = () => {
+    if (userState.isUserAuthTokenExist) {
+      if (isLiked) {
+        deleteSpecificLiked(_id);
+      } else {
+        postLiked({ video });
+      }
+
+      setIsLiked((prevValue) => !prevValue);
+    } else {
+      handleAddMoreToasts({
+        msg: "Liked",
+        type: "public_liked",
+      });
+    }
+  };
+
   const handleSaveClick = () => {
     if (userState.isUserAuthTokenExist) {
-      const toggleForVideo = isVideoInWatchLater(video._id)
+      const toggleForVideo = isVideoInWatchLater(_id)
         ? { ...video, isInWatchLater: true }
         : { ...video };
       toggleModal(toggleForVideo);
+    } else {
+      handleAddMoreToasts({
+        type: "public_save",
+      });
     }
   };
 
@@ -45,7 +67,7 @@ export const SingleVideo = ({ video, loading }) => {
         <h1 className="fs-2">{title}</h1>
 
         <div className="ml-auto mt-1">
-          <Button className="btn btn-rounded py-0p5">
+          <Button onClick={handleLikeClick} className="btn btn-rounded py-0p5">
             {isLiked ? (
               <>
                 <LikedIcon /> Liked
@@ -99,6 +121,8 @@ SingleVideo.propTypes = {
     videoYTId: PropTypes.string,
   }),
   loading: PropTypes.bool,
+  isLiked: PropTypes.bool,
+  setIsLiked: PropTypes.func,
 };
 
 SingleVideo.defaultProps = {
@@ -121,4 +145,6 @@ SingleVideo.defaultProps = {
     videoYTId: "",
   },
   loading: false,
+  isLiked: false,
+  setIsLiked: () => {},
 };

@@ -1,0 +1,22 @@
+.toast {
+  background: var(--COLOR-NAVBAR-BACKGROUND);
+  box-shadow: none;
+}
+
+.toast > * {
+  color: var(--COLOR-TEXT);
+}
+
+.toast a {
+  color: var(--COLOR-PRIMARY);
+}
+
+.toast a:hover {
+  color: var(--COLOR-PRIMARY-DARK-SHADE);
+}
+
+.toast svg {
+  height: 1.8rem;
+  margin: auto;
+  width: 1.8rem;
+}

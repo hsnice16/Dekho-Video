@@ -10,7 +10,13 @@ import {
   WatchLaterIcon,
 } from "assets";
 import { ROUTE_ROOT, ROUTE_HISTORY } from "utils";
-import { useHistory, useUser, useWatchLater } from "context";
+import {
+  useHistory,
+  useLiked,
+  useToast,
+  useUser,
+  useWatchLater,
+} from "context";
 
 const OptionsListContext = createContext({
   showOptionsListForVideo: "",
@@ -22,6 +28,8 @@ const OptionsListProvider = ({ children }) => {
   const [showOptionsListForVideo, setShowOptionsListForVideo] = useState("");
   const location = useLocation();
   const { userState } = useUser();
+  const { handleAddMoreToasts } = useToast();
+  const { deleteSpecificLiked, postLiked } = useLiked();
   const { deleteSpecificHistory } = useHistory();
   const { deleteSpecificWatchLater, postWatchLater } = useWatchLater();
 
@@ -48,8 +56,13 @@ const OptionsListProvider = ({ children }) => {
             if (isInWatchLater) {
               deleteSpecificWatchLater(id);
             } else {
-              postWatchLater({ video: { ...details, isInWatchLater: true } });
+              postWatchLater({ video: { ...details } });
             }
+          } else {
+            handleAddMoreToasts({
+              msg: "Watch Later",
+              type: "public_watch_later",
+            });
           }
         },
         GetIcon: (props) =>
@@ -90,7 +103,20 @@ const OptionsListProvider = ({ children }) => {
           {
             _id: uuid(),
             option: `${isLiked ? "Remove from" : "Add to"} Liked`,
-            handleClick: () => {},
+            handleClick: (id, details) => {
+              if (userState.isUserAuthTokenExist) {
+                if (isLiked) {
+                  deleteSpecificLiked(id);
+                } else {
+                  postLiked({ video: { ...details } });
+                }
+              } else {
+                handleAddMoreToasts({
+                  msg: "Liked",
+                  type: "public_liked",
+                });
+              }
+            },
             GetIcon: (props) =>
               isLiked ? (
                 <LikedIcon {...props} />

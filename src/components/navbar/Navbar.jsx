@@ -3,14 +3,20 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { FilledAvatar, OutlinedAvatar, BrandLogo } from "assets";
 import { ROUTE_SIGN_IN, ROUTE_ROOT } from "utils";
-import { useUser } from "context";
+import { useToast, useUser } from "context";
 import { useCookieHandler } from "custom-hooks";
 
 export const Navbar = () => {
+  const { handleAddMoreToasts } = useToast();
   const { userState, userInitialState, setUserState } = useUser();
   const { eraseUserAuthTokenCookie } = useCookieHandler();
 
   const handleLogOutClick = () => {
+    handleAddMoreToasts({
+      msg: "Hope you had a great time! Successfully Logged Out 🎉🎉",
+      type: "log_out",
+    });
+
     setUserState(userInitialState);
     eraseUserAuthTokenCookie();
   };

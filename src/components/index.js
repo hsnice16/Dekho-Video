@@ -9,6 +9,7 @@ export { FormPasswordInput } from "./auth-form/form-password-input/FormPasswordI
 
 export { VideoCard } from "./card/video-card/VideoCard";
 export { ClearAllButton } from "./clear-all-button/ClearAllButton";
+export { Compose } from "./compose/Compose";
 
 export { Navbar } from "./navbar/Navbar";
 export { NotFound } from "./not-found/NotFound";
@@ -21,4 +22,5 @@ export { Button } from "./shared/button/Button";
 export { Chip } from "./shared/chip/Chip";
 export { SideNavbar } from "./side-navbar/SideNavbar";
 
+export { Toast } from "./toast/Toast";
 export { VideoList } from "./video-list/VideoList";

@@ -45,7 +45,7 @@ export const addItemToLikedVideos = function (schema, request) {
   const user = requiresAuth.call(this, request);
   if (user) {
     const { video } = JSON.parse(request.requestBody);
-    if (user.likes.some((item) => item.id === video.id)) {
+    if (user.likes.some((item) => item._id === video._id)) {
       return new Response(
         409,
         {},
@@ -54,7 +54,7 @@ export const addItemToLikedVideos = function (schema, request) {
         }
       );
     }
-    user.likes.push(video);
+    user.likes.push({ ...video, isLiked: true, isInWatchLater: false });
     return new Response(201, {}, { likes: user.likes });
   }
   return new Response(
@@ -84,4 +84,34 @@ export const removeItemFromLikedVideos = function (schema, request) {
     {},
     { errors: ["The user you request does not exist. Not Found error."] }
   );
+};
+
+/**
+ * This handler handles removing videos from user's likes.
+ * send DELETE Request at /api/user/likes/all
+ * */
+
+export const clearLikedHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["The email you entered is not Registered. Not Found error"],
+        }
+      );
+    }
+    this.db.users.update({ likes: [] });
+    return new Response(200, {}, { likes: [] });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
 };
