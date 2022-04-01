@@ -11,7 +11,7 @@ export const Compose = ({ components, children }) => {
 };
 
 Compose.propTypes = {
-  components: PropTypes.arrayOf(PropTypes.node),
+  components: PropTypes.arrayOf(PropTypes.elementType),
   children: PropTypes.node,
 };
 

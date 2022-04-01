@@ -1,15 +1,17 @@
 import styles from "./VideoCard.module.css";
 import cardStyles from "../Card.module.css";
 import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
 import PropTypes from "prop-types";
 import { useOptionsList } from "context";
-import { ROUTE_WATCH_VIDEO } from "utils";
+import { ROUTE_WATCH_VIDEO, ROUTE_PLAYLIST } from "utils";
 
 export const VideoCard = ({ video, loading }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { playlistId } = useParams();
   const { showOptionsListForVideo, toggleShowOptionsList, getOptionsList } =
     useOptionsList();
   const {
@@ -25,7 +27,11 @@ export const VideoCard = ({ video, loading }) => {
   const optionsList = getOptionsList(isInWatchLater, isLiked);
 
   const handleOverlayPlayClick = () => {
-    navigate(`${ROUTE_WATCH_VIDEO}/${_id}`);
+    if (location.pathname.includes(ROUTE_PLAYLIST)) {
+      navigate(`${ROUTE_PLAYLIST}/${playlistId}/watch/v/${_id}`);
+    } else {
+      navigate(`${ROUTE_WATCH_VIDEO}/${_id}`);
+    }
   };
 
   const handleKeyDownOnOverlayPlay = (event) => {

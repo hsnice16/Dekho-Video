@@ -1,10 +1,17 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Navbar, NotFound, SideNavbar, RestrictRoute } from "components";
+import {
+  Navbar,
+  NotFound,
+  ProtectRoute,
+  SideNavbar,
+  RestrictRoute,
+} from "components";
 import {
   Home,
   Playlists,
+  PlaylistPlayAll,
   PlaylistDetails,
   Liked,
   WatchLater,
@@ -32,7 +39,6 @@ import Mockman from "mockman-js";
 function App() {
   const location = useLocation();
   const { userState } = useUser();
-  const RestrictRouteList = [ROUTE_SIGN_IN, ROUTE_SIGN_UP];
   const [showShrinkedSideNav, setShowShrinkedSideNav] = useState(
     location.pathname.includes(ROUTE_WATCH_VIDEO) || window.innerWidth <= 940
   );
@@ -40,7 +46,7 @@ function App() {
   return (
     <>
       {userState.isUserAuthTokenExist &&
-      RestrictRouteList.includes(location.pathname) ? (
+      [ROUTE_SIGN_IN, ROUTE_SIGN_UP].includes(location.pathname) ? (
         <></>
       ) : (
         <>
@@ -67,10 +73,17 @@ function App() {
           />
 
           <Route path={ROUTE_PLAYLISTS} element={<Playlists />} />
-          <Route
-            path={`${ROUTE_PLAYLIST}/:playlistId`}
-            element={<PlaylistDetails />}
-          />
+
+          <Route element={<ProtectRoute />}>
+            <Route
+              path={`${ROUTE_PLAYLIST}/:playlistId`}
+              element={<PlaylistDetails />}
+            />
+            <Route
+              path={`${ROUTE_PLAYLIST}/:playlistId/watch/v/:videoId`}
+              element={<PlaylistPlayAll />}
+            />
+          </Route>
 
           <Route path={ROUTE_LIKED} element={<Liked />} />
           <Route path={ROUTE_WATCH_LATER} element={<WatchLater />} />

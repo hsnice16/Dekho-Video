@@ -4,7 +4,7 @@ import { useDocumentTitle, useScrollToTop } from "custom-hooks";
 import { AddToPlaylistIcon, LikedIcon, OutlinedLikedIcon } from "assets";
 import { Button } from "components";
 
-export const SingleVideo = ({ video, loading, isLiked, setIsLiked }) => {
+export const SingleVideoIFrame = ({ video, loading, isLiked, setIsLiked }) => {
   const { toggleModal } = useModal();
   const { userState } = useUser();
   const { handleAddMoreToasts } = useToast();
@@ -101,7 +101,7 @@ export const SingleVideo = ({ video, loading, isLiked, setIsLiked }) => {
   );
 };
 
-SingleVideo.propTypes = {
+SingleVideoIFrame.propTypes = {
   video: PropTypes.shape({
     _id: PropTypes.string,
     categoryName: PropTypes.string,
@@ -125,7 +125,7 @@ SingleVideo.propTypes = {
   setIsLiked: PropTypes.func,
 };
 
-SingleVideo.defaultProps = {
+SingleVideoIFrame.defaultProps = {
   video: {
     _id: "",
     categoryName: "",

@@ -71,10 +71,15 @@ export const usePrivateAsync = (apiToCall) => {
       });
 
       if (propertyToGet !== "history") {
-        const [msg, type] =
+        let [msg, type] =
           propertyToGet === "watchlater"
             ? ["Added in Watch Later 🎉", "private_watch_later"]
             : ["Added in Liked 🎉", "private_liked"];
+
+        [msg, type] =
+          propertyToGet === "playlists"
+            ? ["Created a new Playlist 🎉", "private_save"]
+            : [msg, type];
 
         handleAddMoreToasts({ msg, type });
       }
@@ -106,12 +111,20 @@ export const usePrivateAsync = (apiToCall) => {
         payload: response.data[propertyToGet],
       });
 
-      const [msg, type] =
-        propertyToGet === "history"
-          ? ["Cleared All History 🎉", "private_history"]
-          : propertyToGet === "watchlater"
+      let [msg, type] =
+        propertyToGet === "watchlater"
           ? ["Cleared All Watch Later 🎉", "private_watch_later"]
           : ["Cleared All Liked 🎉", "private_liked"];
+
+      [msg, type] =
+        propertyToGet === "history"
+          ? ["Cleared All History 🎉", "private_history"]
+          : [msg, type];
+
+      [msg, type] =
+        propertyToGet === "playlists"
+          ? ["Deleted All Playlists 🎉", "private_save"]
+          : [msg, type];
 
       handleAddMoreToasts({ msg, type });
     } catch (error) {
@@ -133,12 +146,20 @@ export const usePrivateAsync = (apiToCall) => {
         payload: response.data[propertyToGet],
       });
 
-      const [msg, type] =
-        propertyToGet === "history"
-          ? ["Removed from History 🎉", "private_history"]
-          : propertyToGet === "watchlater"
+      let [msg, type] =
+        propertyToGet === "watchlater"
           ? ["Removed from Watch Later 🎉", "private_watch_later"]
           : ["Removed from Liked 🎉", "private_liked"];
+
+      [msg, type] =
+        propertyToGet === "history"
+          ? ["Removed from History 🎉", "private_history"]
+          : [msg, type];
+
+      [msg, type] =
+        propertyToGet === "playlists"
+          ? ["Removed from Playlists 🎉", "private_save"]
+          : [msg, type];
 
       handleAddMoreToasts({ msg, type });
     } catch (error) {

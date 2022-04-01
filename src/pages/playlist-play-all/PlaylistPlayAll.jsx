@@ -1,63 +1,57 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getCategoryFilteredData,
-  API_TO_GET_SPECIFIC_VIDEO_DETAILS,
-} from "utils";
-import { useAsync } from "custom-hooks";
-import {
-  useHistory,
-  useLiked,
-  useUser,
-  useVideos,
-  useWatchLater,
-} from "context";
+import { API_TO_GET_PLAYLISTS } from "utils";
+import { usePrivateAsync } from "custom-hooks";
+import { useHistory, useLiked, useUser, useWatchLater } from "context";
 import { SingleVideo } from "components";
 
-export const SingleVideoPage = () => {
-  const { videoId } = useParams();
+export const PlaylistPlayAll = () => {
+  const { playlistId, videoId } = useParams();
   const { userState } = useUser();
   const { getLikedMappedData, isVideoLiked } = useLiked();
   const { getWatchLaterMappedData } = useWatchLater();
   const { postHistory } = useHistory();
-  const { videos } = useVideos();
-  const { status: videosStatus, data: videosData } = videos;
 
-  const { api, propertyToGet } = API_TO_GET_SPECIFIC_VIDEO_DETAILS;
+  const { api } = API_TO_GET_PLAYLISTS;
   const {
     state: { data, status },
-  } = useAsync({ api: `${api}/${videoId}`, propertyToGet });
+  } = usePrivateAsync({
+    api: `${api}/${playlistId}`,
+    propertyToGet: "playlist",
+  });
 
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     if (status === "success" && userState.isUserAuthTokenExist) {
-      setIsLiked(isVideoLiked(data._id));
-      postHistory({ video: data });
+      setIsLiked(isVideoLiked(videoId));
+      postHistory({ video: data.videos.find(({ _id }) => _id === videoId) });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, userState.isUserAuthTokenExist]);
 
   const filteredVideos =
-    status === "success" && videosStatus === "success"
+    status === "success"
       ? getLikedMappedData(
           getWatchLaterMappedData(
-            getCategoryFilteredData(data.categoryName, videosData).filter(
-              ({ _id }) => _id !== videoId
-            )
+            data.videos.filter(({ _id }) => _id !== videoId)
           )
         )
       : [];
 
   return (
     <SingleVideo
-      singleVideo={data}
+      singleVideo={
+        status === "success"
+          ? data.videos.find(({ _id }) => _id === videoId)
+          : {}
+      }
       sidepanVideos={filteredVideos}
       isLiked={isLiked}
       setIsLiked={setIsLiked}
       status={status}
-      chipText={data?.categoryName}
+      chipText={data?.title}
     />
   );
 };

@@ -37,3 +37,8 @@ export const API_TO_GET_LIKED = {
   api: "/api/user/likes",
   propertyToGet: "likes",
 };
+
+export const API_TO_GET_PLAYLISTS = {
+  api: "/api/user/playlists",
+  propertyToGet: "playlists",
+};

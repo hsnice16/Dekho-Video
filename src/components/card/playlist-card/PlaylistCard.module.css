@@ -10,8 +10,12 @@
   -webkit-line-clamp: 1;
 }
 
-.playlistCard img {
-  height: 15rem;
+.playlistCard_loading {
+  width: 24rem;
+}
+
+.playlistCard_loading span {
+  background: var(--COLOR-NAVBAR-ACTIVE);
 }
 
 .videoCount_playlist {
@@ -19,4 +23,9 @@
   right: 0;
   top: 0;
   width: 40%;
+}
+
+.playlistCard img,
+.playlistCard_loading > span:nth-child(1) {
+  height: 15rem;
 }

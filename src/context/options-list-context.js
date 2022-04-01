@@ -13,6 +13,7 @@ import { ROUTE_ROOT, ROUTE_HISTORY } from "utils";
 import {
   useHistory,
   useLiked,
+  useModal,
   useToast,
   useUser,
   useWatchLater,
@@ -28,6 +29,7 @@ const OptionsListProvider = ({ children }) => {
   const [showOptionsListForVideo, setShowOptionsListForVideo] = useState("");
   const location = useLocation();
   const { userState } = useUser();
+  const { toggleModal } = useModal();
   const { handleAddMoreToasts } = useToast();
   const { deleteSpecificLiked, postLiked } = useLiked();
   const { deleteSpecificHistory } = useHistory();
@@ -75,7 +77,15 @@ const OptionsListProvider = ({ children }) => {
       {
         _id: uuid(),
         option: "Save to Playlist",
-        handleClick: () => {},
+        handleClick: (_, details) => {
+          if (userState.isUserAuthTokenExist) {
+            toggleModal({ ...details, isInWatchLater });
+          } else {
+            handleAddMoreToasts({
+              type: "public_save",
+            });
+          }
+        },
         GetIcon: (props) => <AddToPlaylistIcon {...props} />,
       },
     ];
