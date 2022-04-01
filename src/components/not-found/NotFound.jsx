@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useDocumentTitle } from "custom-hooks";
@@ -10,7 +11,7 @@ export const NotFound = ({ documentTitle, className, textToShow }) => {
   const navigate = useNavigate();
 
   return (
-    <div className={`pt-5 text-center ${className}`}>
+    <div className={classNames("pt-5", "text-center", className)}>
       <img
         loading="lazy"
         className="max-w-20"

@@ -1,4 +1,5 @@
 import styles from "./Chip.module.css";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 
 export const Chip = ({
@@ -10,13 +11,26 @@ export const Chip = ({
 }) => {
   return loading ? (
     <span
-      className={`h-3p5 inline-block px-1 py-0p5 ${className} ${styles.chip}`}
+      className={classNames(
+        "h-3p5",
+        "inline-block",
+        "px-1",
+        "py-0p5",
+        className,
+        styles.chip
+      )}
     ></span>
   ) : (
     <button
-      className={`fs-1p5 inline-block px-1 py-0p5 ${className} ${styles.chip} ${
+      className={classNames(
+        "fs-1p5",
+        "inline-block",
+        "px-1",
+        "py-0p5",
+        className,
+        styles.chip,
         activeChip === textToShow ? styles.chip_active : ""
-      }`}
+      )}
       onClick={onClick}
     >
       {textToShow}

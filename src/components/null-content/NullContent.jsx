@@ -1,4 +1,5 @@
 import styles from "./NullContent.module.css";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import { useDocumentTitle } from "custom-hooks";
 import { magicBox, teleScope } from "assets";
@@ -11,7 +12,13 @@ export const NullContent = ({ isUserLoggedIn, children, titleToShow }) => {
     : [teleScope, "telescope icon"];
 
   return (
-    <div className={`pt-5 text-center ${styles.nullContent_container}`}>
+    <div
+      className={classNames(
+        "pt-5",
+        "text-center",
+        styles.nullContent_container
+      )}
+    >
       <img loading="lazy" className="max-w-20" src={url} alt={altText} />
 
       {children}

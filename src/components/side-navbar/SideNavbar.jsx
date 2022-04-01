@@ -1,5 +1,6 @@
 import styles from "./SideNavbar.module.css";
-import React, { useEffect } from "react";
+import classNames from "classnames";
+import { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { SideNavbarLinks } from "data";
@@ -31,9 +32,10 @@ export const SideNavbar = ({ showShrinkedSideNav, setShowShrinkedSideNav }) => {
 
   return (
     <nav
-      className={`${styles.sideNavbar} ${
+      className={classNames(
+        styles.sideNavbar,
         showShrinkedSideNav ? styles.sideNavbar_shrinked : ""
-      }`}
+      )}
     >
       <ul className="fs-2">
         {SideNavbarLinks.map(({ _id, linkTo, linkFor, GetIcon }) => (

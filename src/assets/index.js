@@ -11,6 +11,7 @@ export { HomeIcon } from "./icons/HomeIcon";
 export { LikedIcon } from "./icons/LikedIcon";
 export { OutlinedLikedIcon } from "./icons/OutlinedLikedIcon";
 export { OutlinedWatchLaterIcon } from "./icons/OutlinedWatchLaterIcon";
+export { PlaylistPlayIcon } from "./icons/PlaylistPlayIcon";
 export { PlaylistsIcon } from "./icons/PlaylistsIcon";
 export { WatchLaterIcon } from "./icons/WatchLaterIcon";
 

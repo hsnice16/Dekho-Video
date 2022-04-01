@@ -31,24 +31,8 @@
   width: 30rem;
 }
 
-.overlayContent {
-  top: 0;
-}
-
-.videoCard {
-  background: var(--COLOR-MAIN-BACKGROUND);
-  margin: 0 1rem 3rem;
-}
-
 .videoCard h2 {
-  display: -webkit-box;
-  overflow: hidden;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.videoCard p {
-  color: var(--COLOR-TEXT-DARK-SHADE);
 }
 
 .dotsIcon_btn:hover,

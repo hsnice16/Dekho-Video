@@ -1,7 +1,9 @@
+import styles from "./VideoCard.module.css";
+import cardStyles from "../Card.module.css";
+import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
-import styles from "./VideoCard.module.css";
 import PropTypes from "prop-types";
 import { useOptionsList } from "context";
 import { ROUTE_WATCH_VIDEO } from "utils";
@@ -32,7 +34,13 @@ export const VideoCard = ({ video, loading }) => {
 
   return loading ? (
     <div
-      className={`card card-vertical shadow-unset ${styles.videoCard_loading} ${styles.videoCard}`}
+      className={classNames(
+        "card",
+        "card-vertical",
+        "shadow-unset",
+        styles.videoCard_loading,
+        cardStyles.card
+      )}
     >
       <span className="card-vertical-img w-100pct"></span>
 
@@ -42,7 +50,15 @@ export const VideoCard = ({ video, loading }) => {
       </div>
     </div>
   ) : (
-    <div className={`card card-vertical shadow-unset ${styles.videoCard}`}>
+    <div
+      className={classNames(
+        "card",
+        "card-vertical",
+        "shadow-unset",
+        cardStyles.card,
+        styles.videoCard
+      )}
+    >
       <div
         className="card-text-overlay"
         onClick={handleOverlayPlayClick}
@@ -57,13 +73,19 @@ export const VideoCard = ({ video, loading }) => {
         />
 
         <span
-          className={`card-vertical-img overlay-content ${styles.overlayContent}`}
+          className={classNames(
+            "card-vertical-img",
+            "overlay-content",
+            cardStyles.overlayContent
+          )}
         >
           <FaPlay className="overlay-play-icon" /> Play
         </span>
       </div>
 
-      <div className="card-text-overlay-row justify-c-sb px-0">
+      <div
+        className={classNames("card-text-overlay-row", "justify-c-sb", "px-0")}
+      >
         <img
           loading="lazy"
           className="card-horizontal-img shadow-unset"
@@ -72,16 +94,23 @@ export const VideoCard = ({ video, loading }) => {
         />
 
         <div>
-          <h2 className="card-head fs-1p5 lh-1p5 mt-0p5">{title}</h2>
+          <h2 className={classNames("card-head", "fs-1p5", "lh-1p5", "mt-0p5")}>
+            {title}
+          </h2>
           <p className="card-text fs-1p5">{creator}</p>
         </div>
 
         <button
-          className={`cursor-ptr flex mt-0p5 relative ${styles.dotsIcon_btn} ${
+          className={classNames(
+            "cursor-ptr",
+            "flex",
+            "mt-0p5",
+            "relative",
+            styles.dotsIcon_btn,
             showOptionsListForVideo === videoYTId
               ? styles.optionsList_isVisible
               : ""
-          }`}
+          )}
           onClick={(event) => {
             toggleShowOptionsList(event, videoYTId);
           }}

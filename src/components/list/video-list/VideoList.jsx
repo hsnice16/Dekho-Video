@@ -1,11 +1,12 @@
-import styles from "./VideoList.module.css";
+import styles from "../List.module.css";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import { VideoCard } from "components";
 import { getEmptyArrayOfObjects } from "utils";
 
 export const VideoList = ({ videos, status, className }) => {
   return (
-    <ul className={`${className} ${styles.videoList}`}>
+    <ul className={classNames(className, styles.list, styles.list_video)}>
       {status === "loading" &&
         getEmptyArrayOfObjects(4).map(({ _id }) => (
           <li key={_id}>

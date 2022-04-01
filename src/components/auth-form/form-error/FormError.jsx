@@ -1,13 +1,20 @@
-import { Link } from "react-router-dom";
 import styles from "./FormError.module.css";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const FormError = ({ error, linkTo, onPage }) => {
   return (
     <div
-      className={`alert alert-danger-solid m-auto mb-2 text-center ${
-        onPage === "SignIn" ? "w-33" : ""
-      } max-w-45`}
+      className={classNames(
+        "alert",
+        "alert-danger-solid",
+        "m-auto",
+        "mb-2",
+        "text-center",
+        onPage === "SignIn" ? "w-33" : "",
+        "max-w-45"
+      )}
     >
       {onPage === "SignUp" &&
         (error === "Email Already Exist" ? (

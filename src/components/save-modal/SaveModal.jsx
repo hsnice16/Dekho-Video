@@ -1,4 +1,5 @@
 import styles from "./SaveModal.module.css";
+import classNames from "classnames";
 import { CrossIcon, WatchLaterIcon } from "assets";
 import { useModal } from "context";
 
@@ -12,9 +13,11 @@ export const SaveModal = () => {
   return (
     <div
       onClick={toggleModal}
-      className={`${showModal ? "flex" : "d-none"} modal-container ${
+      className={classNames(
+        showModal ? "flex" : "d-none",
+        "modal-container",
         styles.saveModal
-      }`}
+      )}
     >
       <div
         onClick={(event) => {
@@ -23,7 +26,16 @@ export const SaveModal = () => {
         className="m-auto modal"
       >
         <div
-          className={`align-i-ctr flex fs-1p7 justify-c-sb modal-head px-3 py-0p5 ${styles.modalHead}`}
+          className={classNames(
+            "align-i-ctr",
+            "flex",
+            "fs-1p7",
+            "justify-c-sb",
+            "modal-head",
+            "px-3",
+            "py-0p5",
+            styles.modalHead
+          )}
         >
           Save to...
           <button onClick={toggleModal} className="btn p-0">

@@ -1,0 +1,18 @@
+.card {
+  background: var(--COLOR-MAIN-BACKGROUND);
+  margin: 0 1rem 3rem;
+}
+
+.card h2 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.card :is(p, a) {
+  color: var(--COLOR-TEXT-DARK-SHADE);
+}
+
+.overlayContent {
+  top: 0;
+}

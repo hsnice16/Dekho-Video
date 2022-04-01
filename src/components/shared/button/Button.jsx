@@ -1,8 +1,9 @@
 import styles from "./Button.module.css";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 
 export const Button = ({ children, className, onClick }) => (
-  <button className={`${styles.button} ${className}`} onClick={onClick}>
+  <button className={classNames(styles.button, className)} onClick={onClick}>
     {children}
   </button>
 );
