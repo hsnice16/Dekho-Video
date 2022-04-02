@@ -26,7 +26,7 @@ export const SaveModal = () => {
   } = modal;
 
   const { playlists } = usePlaylists();
-  const { status: playlistsStatus, data: playlistsData } = playlists;
+  const { data: playlistsData } = playlists;
 
   return (
     <div
@@ -79,7 +79,7 @@ export const SaveModal = () => {
             <WatchLaterIcon className="m-0p5" />
           </li>
 
-          {playlistsStatus === "success" &&
+          {playlistsData !== null &&
             playlistsData.map(({ _id, title }) => (
               <li key={_id} className="align-i-ctr flex justify-c-sb mb-1">
                 <label htmlFor={_id} className="align-i-ctr cursor-ptr flex">

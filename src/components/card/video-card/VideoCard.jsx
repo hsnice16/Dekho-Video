@@ -28,7 +28,7 @@ export const VideoCard = ({ video, loading }) => {
 
   const handleOverlayPlayClick = () => {
     if (location.pathname.includes(ROUTE_PLAYLIST)) {
-      navigate(`${ROUTE_PLAYLIST}/${playlistId}/watch/v/${_id}`);
+      navigate(`${ROUTE_PLAYLIST}/${playlistId}${ROUTE_WATCH_VIDEO}/${_id}`);
     } else {
       navigate(`${ROUTE_WATCH_VIDEO}/${_id}`);
     }

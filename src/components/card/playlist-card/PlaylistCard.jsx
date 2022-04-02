@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
 import { magicBox, PlaylistPlayIcon } from "assets";
-import { ROUTE_PLAYLIST } from "utils";
+import { ROUTE_PLAYLIST, ROUTE_WATCH_VIDEO } from "utils";
 
 export const PlaylistCard = ({ playlist, loading }) => {
   const navigate = useNavigate();
@@ -14,7 +14,9 @@ export const PlaylistCard = ({ playlist, loading }) => {
 
   const handleOverlayPlayAllClick = () => {
     if (playlistVideosLength > 0)
-      navigate(`${ROUTE_PLAYLIST}/${_id}/watch/v/${playlist.videos[0]._id}`);
+      navigate(
+        `${ROUTE_PLAYLIST}/${_id}${ROUTE_WATCH_VIDEO}/${playlist.videos[0]._id}`
+      );
   };
 
   const handleKeyDownOnOverlayPlayAll = (event) => {

@@ -2,7 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useLiked, usePlaylists, useWatchLater } from "context";
 import { ClearAllButton, NotFound, VideoList } from "components";
 import { API_TO_GET_PLAYLISTS } from "utils";
-import { usePrivateAsync } from "custom-hooks";
+import {
+  useDocumentTitle,
+  usePrivateAsync,
+  useScrollToTop,
+} from "custom-hooks";
 
 export const PlaylistDetails = () => {
   const { playlistId } = useParams();
@@ -18,6 +22,11 @@ export const PlaylistDetails = () => {
     api: `${api}/${playlistId}`,
     propertyToGet: "playlist",
   });
+
+  useScrollToTop();
+  const titleToShow =
+    status === "success" ? `${data.title} Playlist` : "Playlist";
+  useDocumentTitle(titleToShow);
 
   const handleDeletePlaylistClick = () => {
     deleteSpecificPlaylists(playlistId);

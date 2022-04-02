@@ -80,7 +80,7 @@ function App() {
               element={<PlaylistDetails />}
             />
             <Route
-              path={`${ROUTE_PLAYLIST}/:playlistId/watch/v/:videoId`}
+              path={`${ROUTE_PLAYLIST}/:playlistId${ROUTE_WATCH_VIDEO}/:videoId`}
               element={<PlaylistPlayAll />}
             />
           </Route>
