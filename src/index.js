@@ -9,6 +9,7 @@ import {
   LikedProvider,
   ModalProvider,
   OptionsListProvider,
+  PlaylistsProvider,
   ToastProvider,
   UserProvider,
   VideosProvider,
@@ -33,8 +34,9 @@ ReactDOM.render(
         HistoryProvider,
         WatchLaterProvider,
         LikedProvider,
-        OptionsListProvider,
+        PlaylistsProvider,
         ModalProvider,
+        OptionsListProvider,
       ]}
     >
       <App />

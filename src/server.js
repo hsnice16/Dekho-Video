@@ -29,6 +29,7 @@ import {
   getAllPlaylistsHandler,
   addNewPlaylistHandler,
   removePlaylistHandler,
+  clearPlaylistHandler,
   getVideosFromPlaylistHandler,
   addVideoToPlaylistHandler,
   removeVideoFromPlaylistHandler,
@@ -104,6 +105,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/playlists/:playlistId",
         removePlaylistHandler.bind(this)
       );
+      this.delete("/user/playlists/all", clearPlaylistHandler.bind(this));
 
       this.get(
         "/user/playlists/:playlistId",

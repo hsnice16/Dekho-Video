@@ -1,9 +1,33 @@
+.createNewPlaylist_btn {
+  align-items: center;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  margin: auto 0;
+  padding: 0.5rem 1rem 0.5rem 0;
+  width: 100pct;
+}
+
+.formBtn {
+  align-self: flex-end;
+  color: var(--COLOR-PRIMARY-DARK-SHADE);
+}
+
+.formBtn:hover {
+  color: var(--COLOR-PRIMARY);
+}
+
 .saveModal {
   z-index: var(--NAVBAR-Z-INDEX);
 }
 
 .saveModal button:hover {
   background: var(--COLOR-NAVBAR-ACTIVE);
+}
+
+.saveModal ul {
+  max-height: 20rem;
+  overflow-y: auto;
 }
 
 .saveModal > div {
@@ -15,15 +39,16 @@
   z-index: var(--MODAL-Z-INDEX);
 }
 
-.saveModal .modalHead {
+.saveModal :is(.modalHead, .modalFoot) {
   border-color: var(--COLOR-NAVBAR-ACTIVE);
+  padding: 0.5rem 3rem;
 }
 
-.saveModal svg {
+.saveModal :is(button:not(.formBtn), svg, input) {
   color: var(--COLOR-TEXT);
 }
 
-.saveModal input,
+.saveModal input[type="checkbox"],
 .saveModal svg {
   height: 2rem;
   width: 2rem;

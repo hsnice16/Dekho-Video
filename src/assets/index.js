@@ -13,6 +13,8 @@ export { OutlinedLikedIcon } from "./icons/OutlinedLikedIcon";
 export { OutlinedWatchLaterIcon } from "./icons/OutlinedWatchLaterIcon";
 export { PlaylistPlayIcon } from "./icons/PlaylistPlayIcon";
 export { PlaylistsIcon } from "./icons/PlaylistsIcon";
+export { PlaySpeedIcon } from "./icons/PlaySpeedIcon";
+export { PlusIcon } from "./icons/PlusIcon";
 export { WatchLaterIcon } from "./icons/WatchLaterIcon";
 
 export { default as spinner5 } from "./loader/spinner-5.gif";

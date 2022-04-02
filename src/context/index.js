@@ -3,6 +3,7 @@ export * from "./history-context";
 export * from "./liked-context";
 export * from "./modal-context";
 export * from "./options-list-context";
+export * from "./playlists-context";
 export * from "./toast-context";
 export * from "./user-context";
 export * from "./videos-context";

@@ -46,6 +46,15 @@ export const addNewPlaylistHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   if (user) {
     const { playlist } = JSON.parse(request.requestBody);
+    if (user.playlists.some(({ title }) => title === playlist.title)) {
+      return new Response(
+        409,
+        {},
+        {
+          errors: ["Playlist with this title already exists"],
+        }
+      );
+    }
     user.playlists.push({ ...playlist, videos: [], _id: uuid() });
     return new Response(201, {}, { playlists: user.playlists });
   }
@@ -81,6 +90,36 @@ export const removePlaylistHandler = function (schema, request) {
 };
 
 /**
+ * This handler handles removing videos from user's playlists.
+ * send DELETE Request at /api/user/playlists/all
+ * */
+
+export const clearPlaylistHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["The email you entered is not Registered. Not Found error"],
+        }
+      );
+    }
+    this.db.users.update({ playlists: [] });
+    return new Response(200, {}, { playlists: [] });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
+/**
  * This handler handles getting videos from user's playlist.
  * send GET Request at /api/user/playlists/:playlistId
  * */
@@ -89,8 +128,18 @@ export const getVideosFromPlaylistHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   if (user) {
     const playlistId = request.params.playlistId;
-    const playlist = user.playlists.find((item) => item._id !== playlistId);
-    return new Response(200, {}, { playlist });
+    const playlist = user.playlists.find((item) => item._id === playlistId);
+    if (playlist === undefined) {
+      return new Response(
+        500,
+        {},
+        {
+          errors: ["Playlist with given id doesn't exist anymore"],
+        }
+      );
+    } else {
+      return new Response(200, {}, { playlist });
+    }
   }
   return new Response(
     404,
@@ -120,8 +169,8 @@ export const addVideoToPlaylistHandler = function (schema, request) {
         }
       );
     }
-    playlist.videos.push(video);
-    return new Response(201, {}, { playlist });
+    playlist.videos.push({ ...video, isLiked: false, isInWatchLater: false });
+    return new Response(201, {}, { playlists: user.playlists });
   }
   return new Response(
     404,
@@ -145,7 +194,7 @@ export const removeVideoFromPlaylistHandler = function (schema, request) {
       (item) => item._id !== videoId
     );
     playlist.videos = filteredVideos;
-    return new Response(200, {}, { playlist });
+    return new Response(200, {}, { playlists: user.playlists });
   }
   return new Response(
     404,

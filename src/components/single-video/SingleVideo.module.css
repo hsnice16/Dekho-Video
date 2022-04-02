@@ -1,4 +1,4 @@
-.singleVideoPage {
+.singleVideo {
   max-width: 120rem;
 }
 
@@ -22,7 +22,7 @@
 
 /* --MD-BREAKPOINT */
 @media screen and (max-width: 940px) {
-  .singleVideoPage > div:nth-child(2) {
+  .singleVideo > div:nth-child(2) {
     display: none;
   }
 }

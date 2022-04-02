@@ -1,15 +1,24 @@
-import { ClearAllButton, PlayList } from "components";
+import { Link } from "react-router-dom";
+import { useUser } from "context";
+import { useScrollToTop } from "custom-hooks";
+import { NullContent } from "components";
+import { ROUTE_SIGN_IN } from "utils";
+import { PrivatePlaylists } from "./PrivatePlaylists";
 
 export const Playlists = () => {
-  return (
-    <>
-      <ClearAllButton textToShow="Remove All" />
+  useScrollToTop();
+  const { userState } = useUser();
 
-      <div>
-        <h1 className="fs-2 pl-4p5 pt-2">Created Playlists</h1>
-
-        <PlayList className="p-4" />
-      </div>
-    </>
+  return userState.isUserAuthTokenExist ? (
+    <PrivatePlaylists />
+  ) : (
+    <NullContent
+      isUserLoggedIn={userState.isUserAuthTokenExist}
+      titleToShow="Log In to create"
+    >
+      <h1>
+        <Link to={ROUTE_SIGN_IN}>Log In</Link> to see your playlists.
+      </h1>
+    </NullContent>
   );
 };

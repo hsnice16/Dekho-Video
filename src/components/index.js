@@ -19,11 +19,13 @@ export { Navbar } from "./navbar/Navbar";
 export { NotFound } from "./not-found/NotFound";
 export { NullContent } from "./null-content/NullContent";
 
+export { ProtectRoute } from "./route/ProtectRoute";
 export { RestrictRoute } from "./route/RestrictRoute";
 
 export { SaveModal } from "./save-modal/SaveModal";
 export { Button } from "./shared/button/Button";
 export { Chip } from "./shared/chip/Chip";
 export { SideNavbar } from "./side-navbar/SideNavbar";
+export { SingleVideo } from "./single-video/SingleVideo";
 
 export { Toast } from "./toast/Toast";
