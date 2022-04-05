@@ -15,7 +15,9 @@ export { Compose } from "./compose/Compose";
 export { PlayList } from "./list/play-list/PlayList";
 export { VideoList } from "./list/video-list/VideoList";
 
-export { Navbar } from "./navbar/Navbar";
+export { FooterNav } from "./navbar/footer-nav/FooterNav";
+export { HeaderNav } from "./navbar/header-nav/HeaderNav";
+export { SideNav } from "./navbar/side-nav/SideNav";
 export { NotFound } from "./not-found/NotFound";
 export { NullContent } from "./null-content/NullContent";
 
@@ -25,7 +27,6 @@ export { RestrictRoute } from "./route/RestrictRoute";
 export { SaveModal } from "./save-modal/SaveModal";
 export { Button } from "./shared/button/Button";
 export { Chip } from "./shared/chip/Chip";
-export { SideNavbar } from "./side-navbar/SideNavbar";
 export { SingleVideo } from "./single-video/SingleVideo";
 
 export { Toast } from "./toast/Toast";

@@ -29,3 +29,11 @@
 .playlistCard_loading > span:nth-child(1) {
   height: 15rem;
 }
+
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  div:is(.playlistCard, .playlistCard_loading) {
+    margin: auto;
+  }
+}

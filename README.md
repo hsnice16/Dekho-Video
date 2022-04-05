@@ -31,33 +31,23 @@ Give it a try today.
 
 ## 🚀 Features It has
 
-**Authentication**
-
-- Log In/Log Out
-
-  - Sign Up by following the link provided on the Log In page
-
-**Play a Video**
-
-- play a Video, click video card
-- choose a video to play from a specific category, click different chips
-
-**Clear All History**
-
-- clear All history at once
-- remove a specific video from the History
-
-**Like a Video**
-
-- like a Video
-- clear All liked videos at once
-- remove a specific video from the Liked videos
-
 **Add a Video in Watch Later**
 
 - add a Video to your Watch Later
 - clear all Watch Later at once
 - remove a specific video from the Watch Later
+
+**Authentication**
+
+- Guest Log In
+- Log In/Log Out
+
+  - Sign Up by following the link provided on the Log In page
+
+**Clear All History**
+
+- clear All history at once
+- remove a specific video from the History
 
 **Create a Playlist**
 
@@ -68,6 +58,26 @@ Give it a try today.
 - remove a video from a Playlist
 - play all videos of a Playlist at once
 - play a specific video from a Playlist
+
+**Keyboard Accessible**
+
+- most of the things are keyboard accessible
+- to close options list (opened on click of three dots present on card), use `ESC` key
+
+**Like a Video**
+
+- like a Video
+- clear All liked videos at once
+- remove a specific video from the Liked videos
+
+**Play a Video**
+
+- play a Video, click video card
+- choose a video to play from a specific category, click different chips
+
+**Responsive**
+
+- the app is fully responsive
 
 ---
 

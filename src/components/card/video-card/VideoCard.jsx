@@ -124,12 +124,19 @@ export const VideoCard = ({ video, loading }) => {
           <HiDotsVertical className="fs-2 m-auto" />
 
           {showOptionsListForVideo === videoYTId && (
-            <ul className="absolute border-r-0p2 fs-1p5 p-0p5 text-left">
+            <ul
+              tabIndex="0"
+              className="absolute border-r-0p2 fs-1p5 p-0p5 text-left"
+            >
               {optionsList.map(({ _id, option, handleClick, GetIcon }) => (
                 <li
+                  tabIndex="0"
                   key={_id}
                   onClick={() => {
                     handleClick(video._id, video);
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") handleClick(video._id, video);
                   }}
                   className="align-i-fs border-r-0p2 flex my-0p5 p-0p5"
                 >

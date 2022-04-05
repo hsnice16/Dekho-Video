@@ -14,7 +14,7 @@ import {
   ROUTE_WATCH_LATER,
 } from "utils";
 
-export const SideNavbarLinks = [
+export const SideNavLinks = [
   {
     _id: uuid(),
     linkTo: ROUTE_ROOT,

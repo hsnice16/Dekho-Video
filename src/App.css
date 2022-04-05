@@ -21,6 +21,7 @@
   --VIDEO-CARD-DOTS-ICON-Z-INDEX: 1;
 
   --MD-BREAKPOINT: "940px";
+  --SM-BREAKPOINT: "450px";
 }
 
 a {
@@ -90,4 +91,21 @@ main {
 
 .ml-24 {
   margin-left: 24rem;
+}
+
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  main.ml-8 {
+    margin-left: 0;
+  }
+
+  .chip-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .toast-fixed {
+    display: none;
+  }
 }

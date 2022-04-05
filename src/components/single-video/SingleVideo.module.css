@@ -26,3 +26,20 @@
     display: none;
   }
 }
+
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  .iFrame_container > div {
+    padding-left: 1rem;
+  }
+
+  .iFrame_container > iframe {
+    height: 30rem;
+  }
+
+  .singleVideo {
+    padding: 0;
+    padding-bottom: 3rem;
+  }
+}

@@ -28,7 +28,7 @@ export const SignUp = () => {
   } = useAuthHandler();
 
   return (
-    <div className="pt-5">
+    <div className="mx-2 py-5">
       {status === "error" && (
         <FormError error={error} linkTo={ROUTE_SIGN_IN} onPage="SignUp" />
       )}

@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import { useDocumentTitle } from "custom-hooks";
 import { magicBox, teleScope } from "assets";
 
-export const NullContent = ({ isUserLoggedIn, children, titleToShow }) => {
+export const NullContent = ({
+  isUserLoggedIn,
+  children,
+  titleToShow,
+  className,
+}) => {
   useDocumentTitle(titleToShow);
 
   const [url, altText] = isUserLoggedIn
@@ -16,7 +21,8 @@ export const NullContent = ({ isUserLoggedIn, children, titleToShow }) => {
       className={classNames(
         "pt-5",
         "text-center",
-        styles.nullContent_container
+        styles.nullContent_container,
+        className
       )}
     >
       <img loading="lazy" className="max-w-20" src={url} alt={altText} />
@@ -30,10 +36,12 @@ NullContent.propTypes = {
   isUserLoggedIn: PropTypes.bool,
   children: PropTypes.node,
   titleToShow: PropTypes.string,
+  className: PropTypes.string,
 };
 
 NullContent.defaultProps = {
   isUserLoggedIn: false,
   children: <></>,
   titleToShow: "",
+  className: "",
 };

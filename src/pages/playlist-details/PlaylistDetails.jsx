@@ -1,3 +1,5 @@
+import styles from "./PlaylistDetails.module.css";
+import classNames from "classnames";
 import { useNavigate, useParams } from "react-router-dom";
 import { useLiked, usePlaylists, useWatchLater } from "context";
 import { ClearAllButton, NotFound, VideoList } from "components";
@@ -58,7 +60,11 @@ export const PlaylistDetails = () => {
 
           <div>
             {status === "success" && (
-              <h1 className="fs-2 pl-5 pt-2">{data.title} Playlist</h1>
+              <h1
+                className={classNames("fs-2 pl-5 pt-2", styles.playList_name)}
+              >
+                {data.title} Playlist
+              </h1>
             )}
             <VideoList
               videos={filteredVideos}
