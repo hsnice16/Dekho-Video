@@ -1,1 +1,1 @@
-export { SideNavbarLinks } from "./sidenavbar.data";
+export { SideNavLinks } from "./sidenav.data";

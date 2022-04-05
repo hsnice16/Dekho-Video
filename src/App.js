@@ -1,11 +1,12 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import {
-  Navbar,
+  FooterNav,
+  HeaderNav,
   NotFound,
   ProtectRoute,
-  SideNavbar,
+  SideNav,
   RestrictRoute,
 } from "components";
 import {
@@ -31,17 +32,33 @@ import {
   ROUTE_SIGN_UP,
   ROUTE_WATCH_VIDEO,
 } from "utils";
-import { useUser } from "context";
+import { useOptionsList, useUser } from "context";
 
 // mockman-js
 import Mockman from "mockman-js";
 
 function App() {
-  const location = useLocation();
   const { userState } = useUser();
+  const { showOptionsListForVideo, setShowOptionsListForVideo } =
+    useOptionsList();
+  const location = useLocation();
   const [showShrinkedSideNav, setShowShrinkedSideNav] = useState(
     location.pathname.includes(ROUTE_WATCH_VIDEO) || window.innerWidth <= 940
   );
+
+  useEffect(() => {
+    // for keyboard accessiblity
+    const handleEscapeKeyClick = (event) => {
+      if (event.key === "Escape" && showOptionsListForVideo !== "")
+        setShowOptionsListForVideo("");
+    };
+
+    document.addEventListener("keydown", handleEscapeKeyClick);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKeyClick);
+    };
+  }, [setShowOptionsListForVideo, showOptionsListForVideo]);
 
   return (
     <>
@@ -50,8 +67,8 @@ function App() {
         <></>
       ) : (
         <>
-          <Navbar />
-          <SideNavbar
+          <HeaderNav />
+          <SideNav
             showShrinkedSideNav={showShrinkedSideNav}
             setShowShrinkedSideNav={setShowShrinkedSideNav}
           />
@@ -102,6 +119,8 @@ function App() {
           <Route path="/mockman-test" element={<Mockman />} />
         </Routes>
       </main>
+
+      <FooterNav />
     </>
   );
 }

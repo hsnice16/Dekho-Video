@@ -1,3 +1,5 @@
+import styles from "./Playlists.module.css";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { usePlaylists, useUser } from "context";
 import { useDocumentTitle } from "custom-hooks";
@@ -25,13 +27,18 @@ export const PrivatePlaylists = () => {
 
       <div>
         {status === "success" && data.length > 0 && (
-          <h1 className="fs-2 pl-4p5 pt-2">Created Playlists</h1>
+          <h1 className={classNames("fs-2 pl-4p5 pt-2", styles.h1)}>
+            Created Playlists
+          </h1>
         )}
         <PlayList playlists={data} status={status} className="p-4" />
       </div>
 
       {status === "success" && data.length <= 0 && (
-        <NullContent isUserLoggedIn={userState.isUserAuthTokenExist}>
+        <NullContent
+          isUserLoggedIn={userState.isUserAuthTokenExist}
+          className={styles.nullLength_data}
+        >
           <h1>
             Nothing in playlists. <Link to={ROUTE_ROOT}>Create a Playlist</Link>{" "}
             today.

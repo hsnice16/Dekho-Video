@@ -21,6 +21,7 @@ import {
 
 const OptionsListContext = createContext({
   showOptionsListForVideo: "",
+  setShowOptionsListForVideo: () => {},
   toggleShowOptionsList: () => {},
   getOptionsList: () => {},
 });
@@ -147,6 +148,7 @@ const OptionsListProvider = ({ children }) => {
 
   const value = {
     showOptionsListForVideo,
+    setShowOptionsListForVideo,
     toggleShowOptionsList,
     getOptionsList,
   };

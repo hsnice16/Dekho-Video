@@ -1,0 +1,13 @@
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  .h1 {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .nullLength_data {
+    margin-top: -3rem;
+    padding-top: 0;
+  }
+}

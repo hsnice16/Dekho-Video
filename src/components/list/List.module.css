@@ -10,3 +10,19 @@
 .list_video {
   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 }
+
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  .list_play li {
+    margin-bottom: 3rem;
+  }
+
+  .list_video {
+    padding: 0;
+  }
+
+  :is(.list_play, .list_video) li {
+    width: 100%;
+  }
+}

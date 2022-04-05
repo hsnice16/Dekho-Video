@@ -1,0 +1,7 @@
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  .playList_name {
+    display: none;
+  }
+}

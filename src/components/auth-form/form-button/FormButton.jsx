@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import { spinner5 } from "assets";
 import { isStatusLoading } from "utils";
 
-const FormButton = ({ buttonText, status }) => (
+const FormButton = ({ buttonText, status, onClick }) => (
   <button
+    onClick={onClick}
     disabled={isStatusLoading(status)}
     className={classNames(
       "btn",
@@ -38,11 +39,13 @@ const FormButton = ({ buttonText, status }) => (
 FormButton.propTypes = {
   buttonText: PropTypes.string,
   status: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 FormButton.defaultProps = {
   buttonText: "",
   status: "",
+  onClick: () => {},
 };
 
 export { FormButton };

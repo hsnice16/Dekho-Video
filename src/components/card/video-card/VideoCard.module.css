@@ -41,3 +41,21 @@
 .optionsList_isVisible {
   background: var(--COLOR-NAVBAR-ACTIVE);
 }
+
+/* media query for --SM-BREAKPOINT */
+
+@media screen and (max-width: 450px) {
+  .videoCard,
+  .videoCard_loading {
+    margin-left: 0;
+    margin-right: 0;
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .videoCard > div:nth-child(2) {
+    justify-content: flex-start;
+    padding-left: 2rem;
+    padding-right: 1rem;
+  }
+}
