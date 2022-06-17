@@ -46,21 +46,26 @@ export const SingleVideoIFrame = ({ video, loading, isLiked, setIsLiked }) => {
   };
 
   return loading ? (
-    <iframe
-      width="100%"
-      height="500px"
-      src=""
-      title="YouTube video player"
-      frameBorder="0"
-    ></iframe>
+    <>
+      <span></span>
+      <iframe
+        width="100%"
+        height="500"
+        src=""
+        title="YouTube video player"
+        frameBorder="0"
+      ></iframe>
+    </>
   ) : (
     <>
       <iframe
         width="100%"
-        height="500px"
-        src={`https://www.youtube.com/embed/${videoYTId}`}
-        title="YouTube video player"
+        height="500"
+        src={`https://www.youtube.com/embed/${videoYTId}?autoplay=1`}
         frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title="YouTube video player"
       ></iframe>
 
       <div className="flex flex-direction-col py-1">
