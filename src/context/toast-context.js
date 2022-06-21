@@ -26,7 +26,7 @@ const ToastProvider = ({ children }) => {
     <ToastContext.Provider value={value}>
       {children}
 
-      <ul className={`toast-fixed ${toasts.length > 0 ? "" : ""}`}>
+      <ul className="toast-fixed">
         {toasts.map(({ _id, msg, type }) => (
           <li key={_id} className="mt-1">
             <Toast
