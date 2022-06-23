@@ -88,12 +88,6 @@ Give it a try today.
 
 ---
 
-## ✨ Features You will See in Future
-
-- Working of **Forgot Password**
-
----
-
 ## 🔌 Getting Started
 
 - clone the repository on your local machine with the command below in your terminal, and cd into the **Dekho-Video** folder
