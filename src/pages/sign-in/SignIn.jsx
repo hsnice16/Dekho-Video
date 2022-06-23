@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ROUTE_SIGN_UP } from "utils";
 import { useAuthHandler, useDocumentTitle, useScrollToTop } from "custom-hooks";
 import {
@@ -72,9 +71,11 @@ export const SignIn = () => {
             Remember me
           </label>
 
-          <Link className="fs-1p5 fw-bold" to="#">
+          {/* future feature */}
+
+          {/* <Link className="fs-1p5 fw-bold" to="#">
             Forgot Password?
-          </Link>
+          </Link> */}
         </div>
 
         <FormButton buttonText="Log In" status={status} />

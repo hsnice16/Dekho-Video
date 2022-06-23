@@ -16,9 +16,9 @@
 
 - [About](#-about)
 - [Features It has](#-features-it-has)
-- [Features You will See in Future](#-features-you-will-see-in-future)
 - [Getting Started](#-getting-started)
 - [Connect with me](#-connect-with-me)
+<!-- - [Features You will See in Future](#-features-you-will-see-in-future) -->
 
 ---
 
@@ -80,11 +80,11 @@ Give it a try today.
 
 - the app is fully responsive
 
----
+<!-- ---
 
 ## ✨ Features You will See in Future
 
-- Working of **Forgot Password**
+- Working of **Forgot Password** -->
 
 ---
 
