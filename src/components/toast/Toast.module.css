@@ -1,6 +1,6 @@
 .toast {
   background: var(--COLOR-NAVBAR-BACKGROUND);
-  box-shadow: none;
+  box-shadow: 0.2rem 0.2rem 1rem 1rem var(--COLOR-SLATE-600);
 }
 
 .toast > * {

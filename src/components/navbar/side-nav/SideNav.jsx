@@ -45,6 +45,7 @@ export const SideNav = ({ showShrinkedSideNav, setShowShrinkedSideNav }) => {
             <li key={_id}>
               <NavLink
                 to={linkTo}
+                title={linkFor}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 <GetIcon className={styles.icon} /> <span>{linkFor}</span>
